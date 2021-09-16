@@ -1,0 +1,30 @@
+.smallThumbnail {
+    @apply flex mb-20 xl:mb-10;
+
+    &__img {
+        @apply flex-auto min-w-[70px] max-w-xs mr-3;
+    }
+    &__detail {
+        @apply flex flex-col self-stretch justify-between;
+
+        &-name {
+            @apply my-0 py-0 -mt-1 truncate xl:whitespace-normal;
+        }
+
+        &-genres {
+            @apply text-white text-opacity-30 text-xs;
+        }
+
+        &-tmdb {
+            @apply flex items-center justify-start mt-5;
+
+            figure {
+                @apply bg-red-primary bg-opacity-50 text-black font-extrabold rounded-md text-[9px] px-1 py-1 mr-2;
+            }
+        }
+
+        &-vote {
+            @apply text-xs text-white font-semibold pb-[0.4px];
+        }
+    }
+}

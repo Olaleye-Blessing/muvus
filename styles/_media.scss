@@ -1,0 +1,68 @@
+.scroll__media {
+    @apply relative h-full w-full rounded-2xl overflow-hidden;
+
+    &-overlay {
+        @apply absolute inset-0 bg-black-primary bg-opacity-50;
+    }
+
+    &-detail {
+        @apply flex flex-col justify-center pl-3 space-y-2;
+    }
+}
+
+.media {
+    &__cont {
+        @apply mt-12;
+
+        &-header {
+            @apply mb-8 text-red-primary;
+
+            span {
+                &:first-child {
+                    @apply text-white;
+                }
+                &:last-child {
+                    @apply text-white text-opacity-50;
+                }
+            }
+        }
+    }
+
+    &__lists {
+        // @apply sm:flex sm:flex-wrap sm:justify-between gap-2;
+        // @apply sm:flex sm:flex-wrap sm:justify-start gap-3;
+        @apply flex flex-wrap justify-start gap-3;
+    }
+
+    &__list {
+        // @apply mb-8 max-w-xs mx-auto shadow-lg pb-6 sm:w-full sm:max-w-[300px];
+        // @apply transition-all duration-200 ease-in-out mb-8 mx-auto pb-6 sm:w-full max-w-[240px] rounded-lg overflow-hidden bg-black bg-opacity-20 shadow-lg ring-white-primary ring-opacity-10 ring-1 hover:shadow-lg hover:bg-opacity-40 hover:scale-105 hover:ring-red-primary hover:ring-opacity-20 sm:max-w-[280px];
+        // @apply bg-red;
+        @apply mx-auto mb-8;
+    }
+    &__link {
+        @apply block pb-12 h-full transition-all duration-200 ease-in-out max-w-[240px] rounded-lg overflow-hidden bg-black bg-opacity-20 shadow-lg ring-white-primary ring-opacity-10 ring-1 hover:shadow-lg hover:bg-opacity-40 hover:scale-105 focus:scale-105 focus:ring-red-primary focus:ring-opacity-20 sm:max-w-[280px] sm:w-full;
+    }
+    &__img {
+    }
+    &__overview {
+        @apply truncate text-white-primary text-opacity-50 mt-2;
+    }
+    &__overview,
+    &__title {
+        @apply px-3;
+    }
+}
+
+.popular__media {
+    &-header {
+        @apply mb-5;
+    }
+    &-lists {
+        @apply mt-3 flex items-stretch justify-start overflow-x-scroll scrollbar-hide space-x-10 sm:space-x-10 pr-5 sm:pr-10 xl:overflow-auto xl:block xl:space-x-0 xl:h-[300px] xl:scrollbarVisible;
+    }
+
+    &-list {
+        // @apply bg-black;
+    }
+}

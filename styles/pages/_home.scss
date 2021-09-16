@@ -1,0 +1,44 @@
+.home {
+    &__layout {
+        @apply sm:home__layout-grid xl:home__layout-grid-lg;
+        &-main {
+            @apply sm:pl-8 sm:overflow-x-hidden sm:home__main-grid;
+            // @apply bg-red;
+        }
+    }
+    &__header {
+        @apply mt-3 sticky left-0 top-[3.7rem] z-[990] bg-black-primary pt-3 pb-2 sm:top-2 sm:mt-[17px] sm:self-start;
+        &-lists {
+            @apply flex space-x-5;
+        }
+        &-list {
+        }
+        &-btn {
+            @apply text-white-primary text-opacity-70;
+        }
+    }
+    &__slider {
+        @apply max-w-lg mx-auto;
+    }
+
+    &__genre {
+        &-cont {
+            @apply relative;
+        }
+        &-lists {
+            @apply mt-3 flex whitespace-nowrap items-center justify-start overflow-x-scroll scrollbar-hide space-x-5 sm:space-x-10 pr-5 sm:pr-10;
+        }
+
+        &-list {
+            @apply mb-2;
+        }
+
+        &-btn {
+            @apply py-1 text-white text-opacity-30 hover:text-red-primary;
+        }
+    }
+
+    &__aside {
+        @apply px-2 sm:aside__layout-area sm:pl-8 lg:sticky top-0 right-0 xl:pt-4 xl:h-screen xl:border-l xl:border-white-primary xl:border-opacity-20;
+    }
+}

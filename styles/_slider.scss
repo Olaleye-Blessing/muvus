@@ -1,0 +1,35 @@
+.sliders {
+    @apply flex items-center justify-center;
+
+    &-cont {
+        @apply relative mx-auto my-4 w-full h-[400px] overflow-hidden;
+    }
+
+    &__btn {
+        @apply absolute top-1/2 -translate-y-full text-3xl z-20 hover:bg-red-primary hover:bg-opacity-60 py-5 px-1;
+
+        &-prev {
+            @apply left-0;
+        }
+
+        &-next {
+            @apply right-0;
+        }
+    }
+}
+
+.slider {
+    @apply absolute top-0 left-0 w-full h-full transition-all duration-1000 z-[400px];
+
+    &.active {
+        @apply opacity-100 translate-x-0;
+    }
+
+    &.lastSlide {
+        @apply -translate-x-full;
+    }
+
+    &.nextSlide {
+        @apply translate-x-full;
+    }
+}
