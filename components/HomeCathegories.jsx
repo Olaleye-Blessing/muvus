@@ -5,7 +5,7 @@ const HomeHeader = ({ handleChangeCathegory, activeCathegory }) => {
     let lists = [
         { text: "Tv Shows", cathegory: "tv" },
         { text: "Movies", cathegory: "movie" },
-        // { text: "People" },
+        // { text: "People", cathegory: "person" },
     ];
     return (
         <ul className="home__header-lists">

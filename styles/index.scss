@@ -9,6 +9,7 @@
 @import "./media";
 @import "./loadingIndicator";
 @import "./thumbnail";
+@import "./search";
 
 @import "./pages/index";
 @import "./utils/index";
@@ -18,7 +19,8 @@
         .home__layout-grid {
             // @apply text-red-light;
             display: grid;
-            grid-template-columns: 200px 3fr;
+            // grid-template-columns: 200px 3fr;
+            grid-template-columns: 225px 3fr;
 
             &-lg {
                 // @apply text-red-light;

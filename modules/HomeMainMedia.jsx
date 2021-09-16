@@ -1,7 +1,13 @@
 import LoadingIndicator from "../components/LoadingIndicator";
 import Media from "../components/Media";
+import MediaLists from "./MediaLists";
 
 const HomeMainMedia = ({ genreMedia: { results }, cathegory, genreName }) => {
+    results = [...results].map((medium) => ({
+        ...medium,
+        media_type: cathegory,
+    }));
+
     return (
         <section className="media__cont">
             <header>
@@ -10,7 +16,8 @@ const HomeMainMedia = ({ genreMedia: { results }, cathegory, genreName }) => {
                     <span className="">{genreName}</span>
                 </h2>
             </header>
-            <ul className="media__lists">
+            <MediaLists media={results} />
+            {/* <ul className="media__lists">
                 {results.map((media) => {
                     return (
                         <li
@@ -21,7 +28,7 @@ const HomeMainMedia = ({ genreMedia: { results }, cathegory, genreName }) => {
                         </li>
                     );
                 })}
-            </ul>
+            </ul> */}
         </section>
     );
 };

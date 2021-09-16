@@ -2,16 +2,20 @@ import { useRouter } from "next/dist/client/router";
 import { useEffect, useState } from "react";
 import HomeSlider from "../components/HomeSlider";
 import LoadingIndicator from "../components/LoadingIndicator";
+import { useAppContext } from "../context/appContext";
 import HomeFavouriteMedia from "../modules/HomeFavouriteMedia";
 import HomeHeader from "../modules/HomeHeader";
 import HomeMainMedia from "../modules/HomeMainMedia";
 import HomePopularMedia from "../modules/HomePopularMedia";
+import NavSearchForm from "../modules/NavSearchForm";
+import SearchResultContainer from "../modules/SearchResultContainer";
 import { fetchData } from "../utils/fetchData";
 
 const TMDB_KEY = process.env.TMDB_KEY;
 
 const Home = ({ genreMedia, genreId, genreName }) => {
     let router = useRouter();
+    let { searchQueryDetail } = useAppContext();
 
     const [cathegory, setCathegory] = useState(router.query.cathegory || "tv");
     const [popularMediaDetail, setPopularMediaDetail] = useState({
@@ -103,21 +107,26 @@ const Home = ({ genreMedia, genreId, genreName }) => {
 
     return (
         <>
-            <main className="home__layout-main">
-                <HomeHeader
-                    headerDetails={trendingDetail}
-                    genreName={genreName}
-                    cathegory={cathegory}
-                    router={router}
-                    handleChangeCathegory={handleChangeCathegory}
-                />
-                <HomeMainMedia
-                    genreName={genreName}
-                    genreMedia={genreMedia}
-                    cathegory={cathegory}
-                />
-            </main>
+            {searchQueryDetail.showSearch ? (
+                <SearchResultContainer searchQueryDetail={searchQueryDetail} />
+            ) : (
+                <main className="home__layout-main">
+                    <HomeHeader
+                        headerDetails={trendingDetail}
+                        genreName={genreName}
+                        cathegory={cathegory}
+                        router={router}
+                        handleChangeCathegory={handleChangeCathegory}
+                    />
+                    <HomeMainMedia
+                        genreName={genreName}
+                        genreMedia={genreMedia}
+                        cathegory={cathegory}
+                    />
+                </main>
+            )}
             <aside className="home__aside">
+                <NavSearchForm navSize="nav__search-form-lg" />
                 <HomePopularMedia
                     popularMediaDetail={popularMediaDetail}
                     cathegory={cathegory}

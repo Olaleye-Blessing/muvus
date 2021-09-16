@@ -35,13 +35,10 @@
     }
 
     &__list {
-        // @apply mb-8 max-w-xs mx-auto shadow-lg pb-6 sm:w-full sm:max-w-[300px];
-        // @apply transition-all duration-200 ease-in-out mb-8 mx-auto pb-6 sm:w-full max-w-[240px] rounded-lg overflow-hidden bg-black bg-opacity-20 shadow-lg ring-white-primary ring-opacity-10 ring-1 hover:shadow-lg hover:bg-opacity-40 hover:scale-105 hover:ring-red-primary hover:ring-opacity-20 sm:max-w-[280px];
-        // @apply bg-red;
-        @apply mx-auto mb-8;
+        @apply mx-auto mb-8 w-full max-w-[250px];
     }
     &__link {
-        @apply block pb-12 h-full transition-all duration-200 ease-in-out max-w-[240px] rounded-lg overflow-hidden bg-black bg-opacity-20 shadow-lg ring-white-primary ring-opacity-10 ring-1 hover:shadow-lg hover:bg-opacity-40 hover:scale-105 focus:scale-105 focus:ring-red-primary focus:ring-opacity-20 sm:max-w-[280px] sm:w-full;
+        @apply block w-full h-full pb-12 transition-all duration-200 ease-in-out rounded-lg overflow-hidden bg-black bg-opacity-20 shadow-lg ring-white-primary ring-opacity-10 ring-1 hover:shadow-lg hover:bg-opacity-40 focus:ring-red-primary focus:ring-opacity-20 hover:scale-105 focus:scale-105;
     }
     &__img {
     }
