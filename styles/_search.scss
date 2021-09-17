@@ -1,0 +1,20 @@
+.search {
+    @apply mt-4;
+    &__header {
+        @apply mb-7;
+        &-cont {
+            @apply flex items-center justify-between gap-3;
+        }
+        &-title {
+            @apply mb-3;
+        }
+        &-span {
+            @apply text-white text-opacity-50;
+        }
+    }
+    &__goHome {
+    }
+    &__noresult {
+        @apply mb-10 text-center text-xl;
+    }
+}

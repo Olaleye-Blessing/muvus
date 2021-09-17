@@ -1,0 +1,62 @@
+@import "~tailwindcss/base";
+@import "~tailwindcss/components";
+@import "~tailwindcss/utilities";
+
+@import "./base";
+@import "./navbar";
+@import "./btns";
+@import "./slider";
+@import "./media";
+@import "./loadingIndicator";
+@import "./thumbnail";
+@import "./search";
+@import "./modal";
+
+@import "./pages/index";
+@import "./utils/index";
+
+@layer utilities {
+    @variants responsive {
+        .home__layout-grid {
+            // @apply text-red-light;
+            display: grid;
+            // grid-template-columns: 200px 3fr;
+            grid-template-columns: 225px 3fr;
+
+            &-lg {
+                // @apply text-red-light;
+
+                grid-template-columns: 250px 3fr 250px;
+            }
+        }
+        .home__layout-main {
+            @apply col-start-2 col-end-3 row-start-1 row-end-2;
+        }
+        .home__main-grid {
+            @apply text-opacity-100;
+        }
+
+        .nav__layout-area {
+            // @apply bg-red-light;
+            // @apply text-red;
+
+            // @apply self-start;
+            // @apply self-stretch;
+
+            @apply col-start-1 col-end-2 row-start-1 row-end-3;
+        }
+        .aside__layout-area {
+            @apply text-white sm:overflow-hidden;
+
+            @apply col-start-2 row-start-2 xl:col-start-3 xl:row-start-1;
+        }
+        .scrollbarVisible {
+            scrollbar-width: auto;
+        }
+        .general__layout-grid {
+            // @apply bg-red;
+            display: grid;
+            grid-template-columns: 225px 3fr;
+        }
+    }
+}
