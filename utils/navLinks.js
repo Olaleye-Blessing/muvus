@@ -70,18 +70,19 @@ export default [
                 text: "tv show",
                 icon: <HiOutlineVideoCamera />,
                 activeIcon: <HiVideoCamera />,
-                path: "/tvshow",
+                path: "/?cathegory=tv",
             },
             {
                 text: "movie",
                 icon: <BiMovie />,
                 activeIcon: <MdMovie />,
+                path: "/?cathegory=movie",
             },
-            {
-                text: "people",
-                icon: <BsPeople />,
-                activeIcon: <BsPeopleFill />,
-            },
+            // {
+            //     text: "people",
+            //     icon: <BsPeople />,
+            //     activeIcon: <BsPeopleFill />,
+            // },
         ],
     },
 ];

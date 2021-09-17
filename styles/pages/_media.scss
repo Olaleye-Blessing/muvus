@@ -1,0 +1,25 @@
+.mediaPage {
+    @apply relative z-[100] px-0;
+    &__img {
+        @apply relative h-[calc(100vh-66px)] sm:h-screen;
+    }
+    &__detail {
+        @apply absolute inset-0 bg-black-primary bg-opacity-[0.75] flex flex-col justify-center px-4 pb-3 pt-6 sm:px-10;
+    }
+    &__overview {
+        @apply max-h-[35vh] overflow-y-auto text-white text-opacity-70 mb-3 sm:max-h-[45vh] max-w-xl;
+    }
+    &__header {
+    }
+    &__head {
+        @apply max-w-xl;
+    }
+    &__title {
+    }
+    &__dot {
+        @apply relative -top-2 mx-2;
+    }
+    &__date {
+        @apply text-sm font-normal inline-block relative top-[-5.5px];
+    }
+}

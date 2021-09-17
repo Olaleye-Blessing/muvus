@@ -1,6 +1,6 @@
 .nav {
     // @apply sm:overflow-scroll;
-    @apply px-2 py-4 flex items-center justify-between bg-black-primary shadow-lg sticky top-0 z-[999] sm:flex-col sm:items-start sm:justify-start sm:pl-6 sm:bottom-0 sm:border sm:border-white-primary sm:pr-0 sm:border-opacity-20 sm:nav__layout-area sm:max-w-[230px] sm:h-screen;
+    @apply px-2 py-4 flex items-center justify-between bg-black-primary shadow-lg sticky top-0 z-[990] sm:flex-col sm:items-start sm:justify-start sm:pl-6 sm:bottom-0 sm:border sm:border-white-primary sm:pr-0 sm:border-opacity-20 sm:nav__layout-area sm:max-w-[230px] sm:h-screen;
     &__lists {
         @apply mb-3 sm:mb-8;
         &-cont {

@@ -10,6 +10,7 @@
 @import "./loadingIndicator";
 @import "./thumbnail";
 @import "./search";
+@import "./modal";
 
 @import "./pages/index";
 @import "./utils/index";
@@ -51,6 +52,11 @@
         }
         .scrollbarVisible {
             scrollbar-width: auto;
+        }
+        .general__layout-grid {
+            // @apply bg-red;
+            display: grid;
+            grid-template-columns: 225px 3fr;
         }
     }
 }

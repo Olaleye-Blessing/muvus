@@ -2,10 +2,17 @@ import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 
 const NavLink = ({ text, icon, activeIcon, path }) => {
-    let router = useRouter();
+    let { pathname, asPath } = useRouter();
     if (!path) path = `/${text}`;
 
-    let activeLink = router.pathname === path ? "btn-active" : "";
+    // let activeLink = pathname === path ? "btn-active" : "";
+
+    let activeLink =
+        path !== pathname && asPath.startsWith(path)
+            ? "btn-active"
+            : asPath === path
+            ? "btn-active"
+            : "";
 
     return (
         <li className="nav__lists-sub">

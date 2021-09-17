@@ -14,3 +14,7 @@
 .backHome {
     @apply bg-black bg-opacity-30 text-white-primary text-opacity-70 pt-1 pb-2 px-3 rounded-lg shadow-xl hover:text-white-primary hover:bg-white hover:bg-opacity-5 hover:shadow-md hover:scale-95;
 }
+
+.overlay {
+    @apply absolute inset-0 bg-black bg-opacity-50;
+}
