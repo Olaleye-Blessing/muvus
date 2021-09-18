@@ -13,13 +13,7 @@
 
 .bar {
     @apply bg-white-primary inline-block;
-    // width: 10px;
-    // height: 70px;
-    // background: #fff;
-    // display: inline-block;
     transform-origin: bottom center;
-    // border-top-right-radius: 20px;
-    // border-top-left-radius: 20px;
     box-shadow: 5px 10px 20px inset rgba(255, 23, 25.2);
     animation: loader 1.2s linear infinite;
 }
@@ -53,8 +47,6 @@
         transform: scaleY(0.1);
     }
     50% {
-        // transform: scaleY(1);
-        // background: yellowgreen;
         @apply bg-red-light scale-y-100;
     }
     100% {

@@ -29,8 +29,6 @@
     }
 
     &__lists {
-        // @apply sm:flex sm:flex-wrap sm:justify-between gap-2;
-        // @apply sm:flex sm:flex-wrap sm:justify-start gap-3;
         @apply flex flex-wrap justify-start gap-3;
     }
 
@@ -60,6 +58,5 @@
     }
 
     &-list {
-        // @apply bg-black;
     }
 }

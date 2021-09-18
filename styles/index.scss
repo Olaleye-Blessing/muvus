@@ -1,31 +1,27 @@
-@import "~tailwindcss/base";
-@import "~tailwindcss/components";
-@import "~tailwindcss/utilities";
+@import url(tailwindcss/base);
+@import url(tailwindcss/components);
+@import url(tailwindcss/utilities);
 
-@import "./base";
-@import "./navbar";
-@import "./btns";
-@import "./slider";
-@import "./media";
-@import "./loadingIndicator";
-@import "./thumbnail";
-@import "./search";
-@import "./modal";
+@import url(./_base.scss);
+@import url(./_navbar.scss);
+@import url(./_btns.scss);
+@import url(./_slider.scss);
+@import url(./_media.scss);
+@import url(./_loadingIndicator.scss);
+@import url(./_thumbnail.scss);
+@import url(./_search.scss);
+@import url(./_modal.scss);
 
-@import "./pages/index";
-@import "./utils/index";
+@import url(./pages/_index.scss);
+@import url(./utils/_index.scss);
 
 @layer utilities {
     @variants responsive {
         .home__layout-grid {
-            // @apply text-red-light;
             display: grid;
-            // grid-template-columns: 200px 3fr;
             grid-template-columns: 225px 3fr;
 
             &-lg {
-                // @apply text-red-light;
-
                 grid-template-columns: 250px 3fr 250px;
             }
         }
@@ -37,12 +33,6 @@
         }
 
         .nav__layout-area {
-            // @apply bg-red-light;
-            // @apply text-red;
-
-            // @apply self-start;
-            // @apply self-stretch;
-
             @apply col-start-1 col-end-2 row-start-1 row-end-3;
         }
         .aside__layout-area {
@@ -54,7 +44,6 @@
             scrollbar-width: auto;
         }
         .general__layout-grid {
-            // @apply bg-red;
             display: grid;
             grid-template-columns: 225px 3fr;
         }
