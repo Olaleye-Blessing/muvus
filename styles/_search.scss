@@ -3,16 +3,17 @@
     &__header {
         @apply mb-7;
         &-cont {
-            @apply flex items-center justify-between gap-3;
+            @apply flex items-start justify-between space-x-5 sm:mb-3 sm:pr-2;
         }
         &-title {
             @apply mb-3;
         }
         &-span {
-            @apply text-white text-opacity-50;
+            @apply text-red-primary text-opacity-50;
         }
     }
     &__goHome {
+        @apply flex-shrink-0 mt-3 sm:mt-4;
     }
     &__noresult {
         @apply mb-10 text-center text-xl;

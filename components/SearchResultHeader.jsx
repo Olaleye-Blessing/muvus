@@ -9,6 +9,7 @@ const SearchResultHeader = ({ query, cathegory }) => {
         { text: "Movies", cathegory: "movie" },
         { text: "People", cathegory: "person" },
     ];
+
     return (
         <header className="search__header">
             <div className="search__header-cont">

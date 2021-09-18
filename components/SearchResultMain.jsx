@@ -13,18 +13,6 @@ const SearchResultMain = ({ results, cathegory }) => {
             )}
         </section>
     );
-    // if (filteredResults.length === 0) {
-    //     return (
-    //         <section>
-    //             <div>No Result Found</div>
-    //         </section>
-    //     );
-    // }
-    // return (
-    //     <section>
-    //         <MediaLists media={filteredResults} />
-    //     </section>
-    // );
 };
 
 export default SearchResultMain;

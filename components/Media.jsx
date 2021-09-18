@@ -18,8 +18,6 @@ const Media = ({
     if (!src) return null;
 
     return (
-        // <article className="">
-        // <Link href={`/${media_type}/${id}`}>
         <Link href={`/mediaDetail/${media_type}/${id}`}>
             <a className="media__link group">
                 <figure className="media__img">
@@ -39,7 +37,6 @@ const Media = ({
                 <h3 className="media__title">{name || title}</h3>
             </a>
         </Link>
-        // </article>
     );
 };
 
