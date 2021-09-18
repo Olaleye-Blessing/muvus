@@ -1,5 +1,6 @@
 import LoadingIndicator from "../components/LoadingIndicator";
-import SmallThumbnail from "../components/SmallThumbnail";
+import { getGenreName } from "../utils/getGenreName";
+import PopularMedia from "./PopularMedia";
 
 const HomePopularMedia = ({
     popularMediaDetail: { loading, media, error, page, total_pages },
@@ -10,23 +11,18 @@ const HomePopularMedia = ({
         return <LoadingIndicator />;
     }
 
-    return (
-        <section className="popular__media">
-            <header className="popular__media-header">
-                <h3>Popular {cathegory}</h3>
-            </header>
-            <ul className="popular__media-lists">
-                {media.map((medium) => (
-                    <li
-                        key={medium.name || medium.title}
-                        className="popular__media-list"
-                    >
-                        <SmallThumbnail {...medium} genres={genres} />
-                    </li>
-                ))}
-            </ul>
-        </section>
-    );
+    const genreStrings = (genre_ids) =>
+        genre_ids
+            .map((id) => getGenreName(genres, id))
+            .slice(0, 2)
+            .join(", ");
+
+    media = [...media].map((medium) => {
+        let genreString = genreStrings(medium.genre_ids);
+        return { ...medium, genreString };
+    });
+
+    return <PopularMedia cathegory={cathegory} media={media} />;
 };
 
 export default HomePopularMedia;

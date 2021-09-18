@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
     let pageClassNameLayout = "";
 
     // pages to use genral layout of 2 colums(nav and main content) grid
-    let generalLayoutGridPages = ["/tv/[id]", "/movie/[id]"];
+    let generalLayoutGridPages = ["/tv/[id]", "/movie/[id]", "/person/[id]"];
 
     if (route === "/") pageClassNameLayout = "home__layout";
 

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { getGenreName } from "../utils/getGenreName";
 import { imageLoader } from "../utils/imageLoader";
 
 const SmallThumbnail = ({
@@ -8,17 +7,13 @@ const SmallThumbnail = ({
     poster_path,
     name,
     title,
-    genres,
-    genre_ids,
+    genreString,
+    known_for_department,
+    popularity,
+    profile_path,
 }) => {
-    let src = backdrop_path || poster_path;
+    let src = backdrop_path || poster_path || profile_path;
     if (!src) return null;
-
-    const genreString = (genre_ids) =>
-        genre_ids
-            .map((id) => getGenreName(genres, id))
-            .slice(0, 2)
-            .join(", ");
 
     return (
         <article className="smallThumbnail">
@@ -32,16 +27,16 @@ const SmallThumbnail = ({
                 />
             </figure>
             <div className="smallThumbnail__detail">
-                <h4 className="smallThumbnail__detail-name">{name || title}</h4>
+                <h5 className="smallThumbnail__detail-name">{name || title}</h5>
                 <p className="smallThumbnail__detail-genres">
-                    {genreString(genre_ids)}
+                    {genreString || known_for_department}
                 </p>
                 <div className="smallThumbnail__detail-tmdb">
                     <figure>
                         <figcaption>TMDB</figcaption>
                     </figure>
                     <p className="smallThumbnail__detail-vote">
-                        {vote_average}
+                        {Number(vote_average || popularity).toFixed(1)}
                     </p>
                 </div>
             </div>
