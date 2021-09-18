@@ -19,7 +19,6 @@
         @apply flex items-center justify-between border-b border-white border-opacity-20 px-2 pt-3 pb-1 sm:gap-4 sm:px-6;
     }
     &__title {
-        // @apply text;
     }
     &__main {
         @apply overflow-y-auto h-[70vh] max-h-[380px] px-2 py-3 sm:px-6;

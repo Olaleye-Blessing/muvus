@@ -1,5 +1,4 @@
 .nav {
-    // @apply sm:overflow-scroll;
     @apply px-2 py-4 flex items-center justify-between bg-black-primary shadow-lg sticky top-0 z-[990] sm:flex-col sm:items-start sm:justify-start sm:pl-6 sm:bottom-0 sm:border sm:border-white-primary sm:pr-0 sm:border-opacity-20 sm:nav__layout-area sm:max-w-[230px] sm:h-screen;
     &__lists {
         @apply mb-3 sm:mb-8;
@@ -24,30 +23,22 @@
     }
     &__toggle {
         @apply text-red-primary text-xl sm:hidden ml-2 flex-shrink-0;
-        // @apply bg-white;
     }
     &__search {
         &-cont {
         }
         &-form {
-            // @apply bg-white bg-opacity-5;
-            // @apply relative max-w-[180px] ml-auto flex-shrink;
             @apply relative max-w-[180px] mr-auto ml-3;
 
             &-sm {
                 @apply sm:pr-2 sm:-left-4 xl:hidden;
             }
             &-lg {
-                // @apply bg-white;
                 @apply hidden xl:block ml-0 mr-auto max-w-[12rem] mb-3;
             }
         }
         &-input {
-            // mr-auto
-            // @apply bg-red;
-            //
             @apply bg-transparent transition-all duration-200  border border-white-primary border-opacity-20 rounded-3xl pl-7 pr-3 pb-1 pt-1 text-opacity-80 text-white-primary hover:bg-white-primary hover:bg-opacity-5 block w-20 focus:w-full focus:bg-white-primary focus:bg-opacity-5 focus:scale-105 focus:shadow-2xl focus:mr-3 caret-red-primary xl:ml-0;
-            // @apply transition-all duration-200 bg-transparent border border-white-primary border-opacity-20 rounded-3xl pl-7 pr-3 pb-1 pt-1 text-opacity-80 text-white-primary hover:bg-white-primary hover:bg-opacity-5 block w-20 focus:w-full ml-auto focus:bg-white-primary focus:bg-opacity-5 focus:scale-105 focus:shadow-2xl focus:mr-3 caret-red-primary sm:mx-auto xl:ml-0 mx-auto;
         }
         &-icon {
             @apply absolute top-1/2 left-2 -translate-y-1/2 text-red-primary text-opacity-60 transition-all duration-200;
