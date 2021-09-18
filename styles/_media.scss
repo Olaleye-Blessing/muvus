@@ -1,6 +1,9 @@
 .scroll__media {
     @apply relative h-full w-full rounded-2xl overflow-hidden;
 
+    &-link {
+        @apply block;
+    }
     &-overlay {
         @apply absolute inset-0 bg-black-primary bg-opacity-50;
     }

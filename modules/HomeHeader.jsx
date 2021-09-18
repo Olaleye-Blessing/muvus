@@ -38,7 +38,7 @@ const HomeHeader = ({
                     genreName={genreName}
                 />
             </header>
-            <HomeSlider trending={media} />
+            <HomeSlider trending={media} cathegory={cathegory} />
         </>
     );
 };
