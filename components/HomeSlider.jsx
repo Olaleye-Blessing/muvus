@@ -18,7 +18,7 @@ const HomeSlider = ({ trending, cathegory: media_type }) => {
             index
         ) => (
             <div key={index} className="scroll__media">
-                <Link href={`/${media_type}/${id}`}>
+                <Link href={`/mediaDetail/${media_type}/${id}`}>
                     <a className="scroll__media-link">
                         <figure className="scroll__media-img">
                             <Image

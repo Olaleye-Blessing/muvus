@@ -19,7 +19,8 @@ const Media = ({
 
     return (
         // <article className="">
-        <Link href={`/${media_type}/${id}`}>
+        // <Link href={`/${media_type}/${id}`}>
+        <Link href={`/mediaDetail/${media_type}/${id}`}>
             <a className="media__link group">
                 <figure className="media__img">
                     <Image
