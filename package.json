@@ -6,7 +6,10 @@
     "start": "next start"
   },
   "dependencies": {
+    "@next-auth/firebase-adapter": "0.1.2",
+    "firebase": "8.7.1",
     "next": "latest",
+    "next-auth": "^3.29.0",
     "postcss-import": "^14.0.2",
     "postcss-preset-env": "^6.7.0",
     "precss": "^4.0.0",

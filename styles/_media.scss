@@ -1,6 +1,9 @@
 .scroll__media {
     @apply relative h-full w-full rounded-2xl overflow-hidden;
 
+    &-link {
+        @apply block;
+    }
     &-overlay {
         @apply absolute inset-0 bg-black-primary bg-opacity-50;
     }
@@ -51,7 +54,7 @@
 
 .popular__media {
     &-header {
-        @apply mb-5;
+        @apply mb-5 capitalize;
     }
     &-lists {
         @apply mt-3 flex items-stretch justify-start overflow-x-scroll scrollbar-hide space-x-10 sm:space-x-10 pr-5 sm:pr-10 xl:overflow-auto xl:block xl:space-x-0 xl:h-[300px] xl:scrollbarVisible;

@@ -5,6 +5,9 @@
         &-cont {
             @apply fixed top-[60.2px] left-0 bg-black-primary w-full overflow-hidden transition-all duration-200 max-w-xs sm:static sm:h-auto sm:border-0 sm:mt-7 sm:pl-0;
         }
+        &.nav__auth {
+            @apply -mt-1 sm:-mt-5;
+        }
     }
     &__links {
         @apply flex items-center w-full text-white text-opacity-50 capitalize mb-3 border-r-2 border-transparent  border-solid hover:text-red;

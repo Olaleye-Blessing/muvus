@@ -3,6 +3,8 @@ import {
     AiFillHome,
     AiOutlineClockCircle,
     AiFillClockCircle,
+    AiOutlineSetting,
+    AiFillSetting,
 } from "react-icons/ai";
 
 import {
@@ -12,12 +14,7 @@ import {
     RiScales2Fill,
 } from "react-icons/ri";
 
-import {
-    BsBookmarksFill,
-    BsBookmarks,
-    BsPeopleFill,
-    BsPeople,
-} from "react-icons/bs";
+import { BsBookmarksFill, BsBookmarks } from "react-icons/bs";
 
 import { HiOutlineVideoCamera, HiVideoCamera } from "react-icons/hi";
 
@@ -83,6 +80,17 @@ export default [
             //     icon: <BsPeople />,
             //     activeIcon: <BsPeopleFill />,
             // },
+        ],
+    },
+    {
+        header: "General",
+        sub: [
+            {
+                text: "Settings",
+                icon: <AiOutlineSetting />,
+                activeIcon: <AiFillSetting />,
+                path: "/settings",
+            },
         ],
     },
 ];

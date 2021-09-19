@@ -5,14 +5,14 @@
         @apply flex-auto min-w-[70px] max-w-xs mr-3;
     }
     &__detail {
-        @apply flex flex-col self-stretch justify-between;
+        @apply flex flex-col self-stretch justify-start;
 
         &-name {
             @apply my-0 py-0 -mt-1 truncate xl:whitespace-normal;
         }
 
         &-genres {
-            @apply text-white text-opacity-30 text-xs;
+            @apply text-white text-opacity-30 text-[0.7rem] mb-auto;
         }
 
         &-tmdb {

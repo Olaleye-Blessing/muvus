@@ -23,19 +23,21 @@ export const AppWrapper = ({ children }) => {
     const handleSearchCathegoryChange = (cathegory) =>
         setsearchQueryDetail({ ...searchQueryDetail, cathegory });
 
-    const handleRemoveSearchPage = () =>
+    const handleRemoveSearchPage = () => {
         setsearchQueryDetail({
             ...searchQueryDetail,
             showSearch: false,
             query: "",
         });
+    };
 
     const handleOnSearch = async (e) => {
         e.preventDefault();
 
         if (router.pathname !== "/") {
-            // router.push("/");
+            router.push("/");
         }
+
         setsearchQueryDetail({
             ...searchQueryDetail,
             loading: true,

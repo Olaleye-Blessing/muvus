@@ -1,3 +1,4 @@
+import { getSession, useSession } from "next-auth/client";
 import { useRouter } from "next/dist/client/router";
 import { useEffect, useState } from "react";
 import HomeSlider from "../components/HomeSlider";
@@ -7,7 +8,9 @@ import HomeFavouriteMedia from "../modules/HomeFavouriteMedia";
 import HomeHeader from "../modules/HomeHeader";
 import HomeMainMedia from "../modules/HomeMainMedia";
 import HomePopularMedia from "../modules/HomePopularMedia";
+import HomePopularPeople from "../modules/HomePopularPeople";
 import NavSearchForm from "../modules/NavSearchForm";
+import PopularMedia from "../modules/PopularMedia";
 import SearchResultContainer from "../modules/SearchResultContainer";
 import { fetchData } from "../utils/fetchData";
 
@@ -25,6 +28,13 @@ const Home = ({ genreMedia, genreId, genreName }) => {
         page: 1,
         total_pages: 1,
     });
+    const [popularPeopleDetail, setPopularPeopleDetail] = useState({
+        loading: true,
+        people: [],
+        error: null,
+        page: 1,
+        total_pages: 1,
+    });
     const [trendingDetail, setTrendingDetail] = useState({
         loading: true,
         error: null,
@@ -33,6 +43,42 @@ const Home = ({ genreMedia, genreId, genreName }) => {
     });
 
     const handleChangeCathegory = (val) => setCathegory(val);
+
+    useEffect(() => {
+        let abortFetch = new AbortController();
+        const fetchPopularPeople = async () => {
+            setPopularPeopleDetail({
+                ...popularPeopleDetail,
+                people: [],
+                loading: true,
+                page: 1,
+                total_pages: 1,
+            });
+            try {
+                let { data: popular } = await fetchData(
+                    `/api/tmdb/popular?cathegory=person&page=${popularPeopleDetail.page}`,
+                    abortFetch.signal
+                );
+
+                setPopularPeopleDetail({
+                    ...popularPeopleDetail,
+                    loading: false,
+                    error: null,
+                    page: popular.currentPage,
+                    people: popular.popularMedia,
+                    total_pages: popular.total_pages,
+                });
+            } catch (error) {
+                setPopularPeopleDetail({
+                    ...popularPeopleDetail,
+                    loading: false,
+                    error: error.message || "There is an error",
+                });
+            }
+        };
+        fetchPopularPeople();
+        return () => abortFetch.abort();
+    }, []);
 
     useEffect(() => {
         setPopularMediaDetail({
@@ -132,13 +178,17 @@ const Home = ({ genreMedia, genreId, genreName }) => {
                     cathegory={cathegory}
                     genres={trendingDetail.genres}
                 />
-                <HomeFavouriteMedia />
+                <HomePopularPeople popularMediaDetail={popularPeopleDetail} />
+
+                {/* <HomeFavouriteMedia /> */}
             </aside>
         </>
     );
 };
 
 export const getServerSideProps = async (context) => {
+    const session = await getSession(context);
+
     let { cathegory, genre } = context.query;
     if (!cathegory) {
         cathegory = "tv";
@@ -174,6 +224,7 @@ export const getServerSideProps = async (context) => {
             genreMedia,
             genreId: genre,
             genreName,
+            session,
         },
     };
 };
