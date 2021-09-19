@@ -1,17 +1,13 @@
 import { useRouter } from "next/dist/client/router";
 import { createRef, useEffect } from "react";
-import { useAppContext } from "../../context/appContext";
 import NavSearchForm from "../../modules/NavSearchForm";
 import HomeLogo from "../HomeLogo";
-import SearchInput from "../SearchInput";
 import NavLists from "./NavLists";
 import NavToggle from "./NavToggle";
 
 const Navbar = () => {
     let pathname = useRouter().pathname;
     let navListRef = createRef();
-    let { searchQueryDetail, handleSearchQueryChange, handleOnSearch } =
-        useAppContext();
 
     useEffect(() => {
         closeMenu();
@@ -51,12 +47,6 @@ const Navbar = () => {
             <HomeLogo />
             <NavLists ref={navListRef} />
             <NavSearchForm />
-            {/* <form className="nav__search-form" onSubmit={handleOnSearch}>
-                <SearchInput
-                    {...searchQueryDetail}
-                    handleSearchQueryChange={handleSearchQueryChange}
-                />
-            </form> */}
             <NavToggle onToggle={toggleNav} />
         </nav>
     );

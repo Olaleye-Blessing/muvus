@@ -1,3 +1,4 @@
+import { getSession, useSession } from "next-auth/client";
 import { useRouter } from "next/dist/client/router";
 import { useEffect, useState } from "react";
 import HomeSlider from "../components/HomeSlider";
@@ -186,6 +187,8 @@ const Home = ({ genreMedia, genreId, genreName }) => {
 };
 
 export const getServerSideProps = async (context) => {
+    const session = await getSession(context);
+
     let { cathegory, genre } = context.query;
     if (!cathegory) {
         cathegory = "tv";
@@ -221,6 +224,7 @@ export const getServerSideProps = async (context) => {
             genreMedia,
             genreId: genre,
             genreName,
+            session,
         },
     };
 };

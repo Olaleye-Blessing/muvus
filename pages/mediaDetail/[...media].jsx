@@ -1,3 +1,4 @@
+import { getSession } from "next-auth/client";
 import { useRouter } from "next/dist/client/router";
 import Image from "next/image";
 import { useState } from "react";
@@ -126,6 +127,8 @@ const Detail = ({ data: { result, cathegory } }) => {
 };
 
 export const getServerSideProps = async (context) => {
+    const session = await getSession(context);
+
     let {
         media: [cathegory, id],
     } = context.query;
@@ -143,6 +146,7 @@ export const getServerSideProps = async (context) => {
         return {
             props: {
                 data: { result, cathegory },
+                session,
             },
         };
     } catch (error) {
