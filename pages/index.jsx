@@ -1,6 +1,7 @@
 import { getSession, useSession } from "next-auth/client";
 import { useRouter } from "next/dist/client/router";
 import { useEffect, useState } from "react";
+import Aside from "../components/Aside/Index";
 import HomeSlider from "../components/HomeSlider";
 import LoadingIndicator from "../components/LoadingIndicator";
 import { useAppContext } from "../context/appContext";
@@ -79,6 +80,12 @@ const Home = ({ genreMedia, genreId, genreName }) => {
         fetchPopularPeople();
         return () => abortFetch.abort();
     }, []);
+
+    // this helps when the cathegory is chosen from navbar
+    useEffect(() => {
+        // cathegory = undefined onMount
+        setCathegory(router.query.cathegory || "tv");
+    }, [router.query.cathegory]);
 
     useEffect(() => {
         setPopularMediaDetail({
@@ -171,7 +178,16 @@ const Home = ({ genreMedia, genreId, genreName }) => {
                     />
                 </main>
             )}
-            <aside className="home__aside">
+            <Aside>
+                <HomePopularMedia
+                    popularMediaDetail={popularMediaDetail}
+                    cathegory={cathegory}
+                    genres={trendingDetail.genres}
+                />
+                <HomePopularPeople popularMediaDetail={popularPeopleDetail} />
+            </Aside>
+
+            {/* <aside className="home__aside">
                 <NavSearchForm navSize="nav__search-form-lg" />
                 <HomePopularMedia
                     popularMediaDetail={popularMediaDetail}
@@ -179,9 +195,7 @@ const Home = ({ genreMedia, genreId, genreName }) => {
                     genres={trendingDetail.genres}
                 />
                 <HomePopularPeople popularMediaDetail={popularPeopleDetail} />
-
-                {/* <HomeFavouriteMedia /> */}
-            </aside>
+            </aside> */}
         </>
     );
 };

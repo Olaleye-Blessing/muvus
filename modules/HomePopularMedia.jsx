@@ -1,3 +1,4 @@
+import AsideSectionLists from "../components/Aside/AsideSectionLists";
 import LoadingIndicator from "../components/LoadingIndicator";
 import { getGenreName } from "../utils/getGenreName";
 import PopularMedia from "./PopularMedia";
@@ -22,7 +23,12 @@ const HomePopularMedia = ({
         return { ...medium, genreString };
     });
 
-    return <PopularMedia cathegory={cathegory} media={media} />;
+    return (
+        <AsideSectionLists header={`Popular ${cathegory}`}>
+            <PopularMedia media={media} />
+        </AsideSectionLists>
+    );
+    // return <PopularMedia cathegory={cathegory} media={media} />;
 };
 
 export default HomePopularMedia;

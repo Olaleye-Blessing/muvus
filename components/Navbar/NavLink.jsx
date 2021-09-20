@@ -5,10 +5,8 @@ const NavLink = ({ text, icon, activeIcon, path }) => {
     let { pathname, asPath } = useRouter();
     if (!path) path = `/${text}`;
 
-    // let activeLink = pathname === path ? "btn-active" : "";
-
     let activeLink =
-        path !== pathname && asPath.startsWith(path)
+        path !== pathname && asPath.startsWith(path) && path.length !== 1
             ? "btn-active"
             : asPath === path
             ? "btn-active"
