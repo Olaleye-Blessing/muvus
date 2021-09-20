@@ -25,7 +25,7 @@
             @apply relative;
         }
         &-lists {
-            @apply mt-3 flex whitespace-nowrap items-center justify-start overflow-x-scroll scrollbar-hide space-x-5 sm:space-x-10 pr-5 sm:pr-10;
+            @apply mt-3 flex whitespace-nowrap items-center justify-start overflow-x-scroll space-x-5 scrollbar__hide sm:space-x-10 pr-5 sm:pr-10;
         }
 
         &-list {

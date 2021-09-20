@@ -48,5 +48,39 @@
             display: grid;
             grid-template-columns: 225px 3fr;
         }
+        .scrollbar {
+            &__hide {
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+
+                &::-webkit-scrollbar {
+                    @apply w-0 h-0;
+                }
+            }
+
+            &__show {
+                scrollbar-width: auto;
+
+                -ms-overflow-style: auto;
+
+                &::-webkit-scrollbar {
+                    @apply w-auto h-auto;
+                }
+            }
+
+            &__track {
+                &-transparent {
+                    &::-webkit-scrollbar-track {
+                        -webkit-box-shadow: inset 0 0 10px transparent;
+                        @apply hover:bg-transparent;
+                    }
+                }
+                &-thin {
+                    &::-webkit-scrollbar {
+                        @apply w-1;
+                    }
+                }
+            }
+        }
     }
 }
