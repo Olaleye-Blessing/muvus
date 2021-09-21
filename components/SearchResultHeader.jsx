@@ -1,8 +1,12 @@
 import { useAppContext } from "../context/appContext";
 
-const SearchResultHeader = ({ query, cathegory }) => {
-    let { handleSearchCathegoryChange, handleRemoveSearchPage } =
-        useAppContext();
+const SearchResultHeader = ({
+    query,
+    cathegory,
+    handleSearchCathegoryChange,
+}) => {
+    let { handleRemoveSearchPage } = useAppContext();
+
     let cathegories = [
         { text: "All", cathegory: "all" },
         { text: "Tv Shows", cathegory: "tv" },

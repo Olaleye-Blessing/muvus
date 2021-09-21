@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Aside from "../components/Aside/Index";
 import HomeSlider from "../components/HomeSlider";
 import LoadingIndicator from "../components/LoadingIndicator";
-import { useAppContext } from "../context/appContext";
 import HomeFavouriteMedia from "../modules/HomeFavouriteMedia";
 import HomeHeader from "../modules/HomeHeader";
 import HomeMainMedia from "../modules/HomeMainMedia";
@@ -19,7 +18,6 @@ const TMDB_KEY = process.env.TMDB_KEY;
 
 const Home = ({ genreMedia, genreId, genreName }) => {
     let router = useRouter();
-    let { searchQueryDetail } = useAppContext();
 
     const [cathegory, setCathegory] = useState(router.query.cathegory || "tv");
     const [popularMediaDetail, setPopularMediaDetail] = useState({
@@ -160,24 +158,21 @@ const Home = ({ genreMedia, genreId, genreName }) => {
 
     return (
         <>
-            {searchQueryDetail.showSearch ? (
-                <SearchResultContainer searchQueryDetail={searchQueryDetail} />
-            ) : (
-                <main className="home__layout-main">
-                    <HomeHeader
-                        headerDetails={trendingDetail}
-                        genreName={genreName}
-                        cathegory={cathegory}
-                        router={router}
-                        handleChangeCathegory={handleChangeCathegory}
-                    />
-                    <HomeMainMedia
-                        genreName={genreName}
-                        genreMedia={genreMedia}
-                        cathegory={cathegory}
-                    />
-                </main>
-            )}
+            <main className="home__layout-main">
+                <HomeHeader
+                    headerDetails={trendingDetail}
+                    genreName={genreName}
+                    cathegory={cathegory}
+                    router={router}
+                    handleChangeCathegory={handleChangeCathegory}
+                />
+                <HomeMainMedia
+                    genreName={genreName}
+                    genreMedia={genreMedia}
+                    cathegory={cathegory}
+                />
+            </main>
+
             <Aside>
                 <HomePopularMedia
                     popularMediaDetail={popularMediaDetail}
