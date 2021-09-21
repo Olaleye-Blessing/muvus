@@ -1,2 +1,5 @@
 .btn {
+    &__outline {
+        @apply border border-solid border-red px-3 pt-1 pb-2 rounded;
+    }
 }
