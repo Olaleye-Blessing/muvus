@@ -1,7 +1,7 @@
 import { useRouter } from "next/dist/client/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import useFetch from "../hooks/useFetch";
 import SearchResultContainer from "../modules/SearchResultContainer";
-import { fetchData } from "../utils/fetchData";
 
 const Search = () => {
     let router = useRouter();
@@ -9,54 +9,17 @@ const Search = () => {
 
     const [searchQueryDetail, setsearchQueryDetail] = useState({
         cathegory: "all",
-        loading: false,
-        error: null,
-        results: [],
-        page: 1,
-        total_pages: 1,
     });
+
+    let url = query && `/api/tmdb/search?q=${query}&page=${1}`;
+
+    let result = useFetch(url);
 
     const handleSearchCathegoryChange = (cathegory) =>
         setsearchQueryDetail({ ...searchQueryDetail, cathegory });
 
-    useEffect(() => {
-        if (!query) return;
-
-        let abortFetch = new AbortController();
-
-        const fetchResult = async (e) => {
-            setsearchQueryDetail({
-                ...searchQueryDetail,
-                page: 1,
-                loading: true,
-            });
-            try {
-                let {
-                    data: { total_pages, results },
-                } = await fetchData(
-                    `/api/tmdb/search?q=${query}&page=${searchQueryDetail.page}`,
-                    abortFetch.signal
-                );
-                setsearchQueryDetail({
-                    ...searchQueryDetail,
-                    loading: false,
-                    total_pages,
-                    results,
-                });
-            } catch (error) {
-                setsearchQueryDetail({
-                    ...searchQueryDetail,
-                    loading: false,
-                    error: error.message || "There was an error",
-                });
-                console.log(error);
-            }
-        };
-
-        fetchResult();
-
-        return () => abortFetch.abort();
-    }, [query]);
+    // this page just mounted
+    if (result.status === "idle") return null;
 
     return (
         <main className="search">
@@ -65,6 +28,7 @@ const Search = () => {
                     searchQueryDetail={searchQueryDetail}
                     query={query}
                     handleSearchCathegoryChange={handleSearchCathegoryChange}
+                    {...result}
                 />
             ) : (
                 <header>

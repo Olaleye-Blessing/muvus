@@ -10,7 +10,6 @@ const popularMedia = async (req, res) => {
     );
     try {
         let popular = await fetchData(url);
-        console.log("done popular");
         let { page: currentPage, results: popularMedia, total_pages } = popular;
         return res
             .status(200)

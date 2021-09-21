@@ -4,25 +4,13 @@ import LoadingIndicator from "../components/LoadingIndicator";
 import HomeCathegories from "./../components/HomeCathegories";
 
 const HomeHeader = ({
-    headerDetails: { loading, error, media, genres },
+    headerDetails: { status, error, data },
     cathegory,
     router,
     handleChangeCathegory,
     genreName,
 }) => {
-    if (loading) {
-        return (
-            <>
-                <header className="home__header">
-                    <HomeCathegories
-                        handleChangeCathegory={handleChangeCathegory}
-                        activeCathegory={cathegory}
-                    />
-                </header>
-                <LoadingIndicator />
-            </>
-        );
-    }
+    if (status === "idle") return null;
 
     return (
         <>
@@ -31,14 +19,23 @@ const HomeHeader = ({
                     handleChangeCathegory={handleChangeCathegory}
                     activeCathegory={cathegory}
                 />
-                <HomeGenres
-                    genres={genres}
-                    router={router}
-                    cathegory={cathegory}
-                    genreName={genreName}
-                />
+                {status === "fetching" && <LoadingIndicator />}
+                {status === "error" && <div>{error}</div>}
+                {status === "fetched" && (
+                    <HomeGenres
+                        genres={data.data.genres}
+                        router={router}
+                        cathegory={cathegory}
+                        genreName={genreName}
+                    />
+                )}
             </header>
-            <HomeSlider trending={media} cathegory={cathegory} />
+            {status === "fetched" && (
+                <HomeSlider
+                    trending={data.data.trending}
+                    cathegory={cathegory}
+                />
+            )}
         </>
     );
 };

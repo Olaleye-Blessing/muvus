@@ -3,14 +3,16 @@ import LoadingIndicator from "../components/LoadingIndicator";
 import PopularMedia from "./PopularMedia";
 
 const HomePopularPeople = ({
-    popularMediaDetail: { loading, people, error, page, total_pages },
+    popularPeopleDetail: { status, error, data },
 }) => {
-    if (loading) return <LoadingIndicator />;
+    if (status === "idle") return null;
 
-    // return <PopularMedia cathegory="People" media={people} />;
     return (
         <AsideSectionLists header="Popular People">
-            <PopularMedia media={people} />
+            {status === "fetching" && <LoadingIndicator />}
+            {status === "fetched" && (
+                <PopularMedia media={data.data.popularMedia} />
+            )}
         </AsideSectionLists>
     );
 };

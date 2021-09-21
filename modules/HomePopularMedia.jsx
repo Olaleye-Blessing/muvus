@@ -3,14 +3,18 @@ import LoadingIndicator from "../components/LoadingIndicator";
 import { getGenreName } from "../utils/getGenreName";
 import PopularMedia from "./PopularMedia";
 
-const HomePopularMedia = ({
-    popularMediaDetail: { loading, media, error, page, total_pages },
-    cathegory,
-    genres,
-}) => {
-    if (loading || genres.length === 0) {
+const HomePopularMedia = ({ popularMediaDetail, cathegory, genres }) => {
+    if (popularMediaDetail.status === "null") return null;
+
+    if (popularMediaDetail.status === "fetching" || !genres) {
         return <LoadingIndicator />;
     }
+
+    let {
+        data: {
+            data: { popularMedia: media },
+        },
+    } = popularMediaDetail;
 
     const genreStrings = (genre_ids) =>
         genre_ids
@@ -28,7 +32,6 @@ const HomePopularMedia = ({
             <PopularMedia media={media} />
         </AsideSectionLists>
     );
-    // return <PopularMedia cathegory={cathegory} media={media} />;
 };
 
 export default HomePopularMedia;

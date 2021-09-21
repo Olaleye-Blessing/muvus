@@ -1,166 +1,45 @@
-import { getSession, useSession } from "next-auth/client";
+import { getSession } from "next-auth/client";
 import { useRouter } from "next/dist/client/router";
 import { useEffect, useState } from "react";
 import Aside from "../components/Aside/Index";
-import HomeSlider from "../components/HomeSlider";
-import LoadingIndicator from "../components/LoadingIndicator";
-import HomeFavouriteMedia from "../modules/HomeFavouriteMedia";
 import HomeHeader from "../modules/HomeHeader";
 import HomeMainMedia from "../modules/HomeMainMedia";
 import HomePopularMedia from "../modules/HomePopularMedia";
 import HomePopularPeople from "../modules/HomePopularPeople";
-import NavSearchForm from "../modules/NavSearchForm";
-import PopularMedia from "../modules/PopularMedia";
-import SearchResultContainer from "../modules/SearchResultContainer";
-import { fetchData } from "../utils/fetchData";
+import useFetch from "./../hooks/useFetch";
 
 const TMDB_KEY = process.env.TMDB_KEY;
 
-const Home = ({ genreMedia, genreId, genreName }) => {
+const Home = ({ genreMedia, genreName }) => {
     let router = useRouter();
 
     const [cathegory, setCathegory] = useState(router.query.cathegory || "tv");
-    const [popularMediaDetail, setPopularMediaDetail] = useState({
-        loading: true,
-        media: [],
-        error: null,
-        page: 1,
-        total_pages: 1,
-    });
-    const [popularPeopleDetail, setPopularPeopleDetail] = useState({
-        loading: true,
-        people: [],
-        error: null,
-        page: 1,
-        total_pages: 1,
-    });
-    const [trendingDetail, setTrendingDetail] = useState({
-        loading: true,
-        error: null,
-        media: [],
-        genres: [],
-    });
+
+    let popularPeopleDetail = useFetch(
+        `/api/tmdb/popular?cathegory=person&page=${1}`
+    );
+
+    let popularMediaDetail = useFetch(
+        `/api/tmdb/popular?cathegory=${cathegory}&page=${1}`
+    );
+
+    let trendingDetails = useFetch(`/api/tmdb/trending?cathegory=${cathegory}`);
 
     const handleChangeCathegory = (val) => setCathegory(val);
-
-    useEffect(() => {
-        let abortFetch = new AbortController();
-        const fetchPopularPeople = async () => {
-            setPopularPeopleDetail({
-                ...popularPeopleDetail,
-                people: [],
-                loading: true,
-                page: 1,
-                total_pages: 1,
-            });
-            try {
-                let { data: popular } = await fetchData(
-                    `/api/tmdb/popular?cathegory=person&page=${popularPeopleDetail.page}`,
-                    abortFetch.signal
-                );
-
-                setPopularPeopleDetail({
-                    ...popularPeopleDetail,
-                    loading: false,
-                    error: null,
-                    page: popular.currentPage,
-                    people: popular.popularMedia,
-                    total_pages: popular.total_pages,
-                });
-            } catch (error) {
-                setPopularPeopleDetail({
-                    ...popularPeopleDetail,
-                    loading: false,
-                    error: error.message || "There is an error",
-                });
-            }
-        };
-        fetchPopularPeople();
-        return () => abortFetch.abort();
-    }, []);
 
     // this helps when the cathegory is chosen from navbar
     useEffect(() => {
         // cathegory = undefined onMount
-        setCathegory(router.query.cathegory || "tv");
+        if (!router.query.cathegory) return;
+
+        setCathegory(router.query.cathegory);
     }, [router.query.cathegory]);
-
-    useEffect(() => {
-        setPopularMediaDetail({
-            ...popularMediaDetail,
-            media: [],
-            loading: true,
-            page: 1,
-            total_pages: 1,
-        });
-        setTrendingDetail({
-            ...trendingDetail,
-            media: [],
-            genres: [],
-            loading: true,
-        });
-        let abortFetch = new AbortController();
-        const fetchTrending = async () => {
-            // setTrendingDetail({ ...trendingDetail, loading: true });
-            try {
-                let {
-                    data: { trending, genres },
-                } = await fetchData(
-                    `/api/tmdb/trending?cathegory=${cathegory}`,
-                    abortFetch.signal
-                );
-                setTrendingDetail({
-                    ...trendingDetail,
-                    loading: false,
-                    error: null,
-                    media: trending,
-                    genres,
-                });
-            } catch (error) {
-                setTrendingDetail({
-                    ...trendingDetail,
-                    loading: false,
-                    error: error.message || "There is an error",
-                });
-            }
-        };
-        const fetchPopular = async () => {
-            // setPopularMediaDetail({ ...popularMediaDetail, loading: true });
-
-            try {
-                let { data: popular } = await fetchData(
-                    `/api/tmdb/popular?cathegory=${cathegory}&page=${popularMediaDetail.page}`,
-                    abortFetch.signal
-                );
-
-                setPopularMediaDetail({
-                    ...popularMediaDetail,
-                    loading: false,
-                    error: null,
-                    page: popular.currentPage,
-                    media: popular.popularMedia,
-                    total_pages: popular.total_pages,
-                });
-            } catch (error) {
-                setPopularMediaDetail({
-                    ...popularMediaDetail,
-                    loading: false,
-                    error: error.message || "There is an error",
-                });
-            }
-        };
-
-        fetchTrending();
-        fetchPopular();
-
-        return () => abortFetch.abort();
-    }, [cathegory]);
 
     return (
         <>
             <main className="home__layout-main">
                 <HomeHeader
-                    headerDetails={trendingDetail}
+                    headerDetails={trendingDetails}
                     genreName={genreName}
                     cathegory={cathegory}
                     router={router}
@@ -177,20 +56,13 @@ const Home = ({ genreMedia, genreId, genreName }) => {
                 <HomePopularMedia
                     popularMediaDetail={popularMediaDetail}
                     cathegory={cathegory}
-                    genres={trendingDetail.genres}
+                    genres={
+                        trendingDetails.status === "fetched" &&
+                        trendingDetails.data.data.genres
+                    }
                 />
-                <HomePopularPeople popularMediaDetail={popularPeopleDetail} />
+                <HomePopularPeople popularPeopleDetail={popularPeopleDetail} />
             </Aside>
-
-            {/* <aside className="home__aside">
-                <NavSearchForm navSize="nav__search-form-lg" />
-                <HomePopularMedia
-                    popularMediaDetail={popularMediaDetail}
-                    cathegory={cathegory}
-                    genres={trendingDetail.genres}
-                />
-                <HomePopularPeople popularMediaDetail={popularPeopleDetail} />
-            </aside> */}
         </>
     );
 };
@@ -231,7 +103,6 @@ export const getServerSideProps = async (context) => {
     return {
         props: {
             genreMedia,
-            genreId: genre,
             genreName,
             session,
         },

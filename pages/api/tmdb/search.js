@@ -16,7 +16,9 @@ const searchForMedia = async (req, res) => {
         let data = await fetchData(url);
         return res.status(200).json({ status: true, data });
     } catch (error) {
-        return res.status(500).json({ status: "failed" });
+        return res
+            .status(500)
+            .json({ status: "failed", message: error.message });
     }
 };
 

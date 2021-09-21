@@ -6,6 +6,9 @@ const SearchResultContainer = ({
     searchQueryDetail,
     query,
     handleSearchCathegoryChange,
+    status,
+    error,
+    data,
 }) => {
     return (
         <>
@@ -14,9 +17,10 @@ const SearchResultContainer = ({
                 query={query}
                 handleSearchCathegoryChange={handleSearchCathegoryChange}
             />
-            {searchQueryDetail.loading && <LoadingIndicator />}
-            {!searchQueryDetail.loading && (
-                <SearchResultMain {...searchQueryDetail} />
+            {status === "fetching" && <LoadingIndicator />}
+            {status === "error" && <div>{error}</div>}
+            {status === "fetched" && (
+                <SearchResultMain {...searchQueryDetail} data={data} />
             )}
         </>
     );

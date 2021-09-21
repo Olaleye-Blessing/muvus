@@ -1,5 +1,9 @@
 import MediaLists from "./../modules/MediaLists";
-const SearchResultMain = ({ results, cathegory }) => {
+const SearchResultMain = ({ cathegory, data }) => {
+    let {
+        data: { results },
+    } = data;
+
     results = [...results].filter(
         ({ backdrop_path, poster_path, profile_path }) =>
             backdrop_path || poster_path || profile_path

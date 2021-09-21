@@ -17,14 +17,12 @@ export const AppWrapper = ({ children }) => {
 
     const handleOnSearch = async (e) => {
         e.preventDefault();
-        console.log({ for: searchQuery });
 
         if (!searchQuery) return;
 
         router.push(`/search?q=${searchQuery}`);
     };
 
-    console.log(searchQuery);
     return (
         <AppContext.Provider
             value={{
