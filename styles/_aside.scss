@@ -11,5 +11,12 @@
     }
     &__lists {
         @apply mt-3 flex items-stretch justify-start overflow-x-scroll space-x-10 scrollbar__hide sm:space-x-10 pr-5 sm:pr-10 xl:overflow-auto xl:block xl:space-x-0 xl:h-[300px] xl:scrollbar__show scrollbar__track-transparent xl:scrollbar__track-thin;
+
+        & > div {
+            @apply min-w-max self-start;
+            &:first-of-type {
+                @apply mt-8;
+            }
+        }
     }
 }

@@ -10,12 +10,12 @@ const popularMedia = async (req, res) => {
     );
     try {
         let popular = await fetchData(url);
-        let { page: currentPage, results: popularMedia, total_pages } = popular;
+        let { page: currentPage, results, total_pages } = popular;
         return res
             .status(200)
-            .json({ data: { currentPage, popularMedia, total_pages } });
+            .json({ data: { currentPage, results, total_pages } });
     } catch (error) {
-        return res.status(500).json({ status: "failed" });
+        return res.status(500).json({ status: "failed", error: error.message });
     }
 };
 

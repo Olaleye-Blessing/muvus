@@ -1,6 +1,6 @@
 import { useRouter } from "next/dist/client/router";
-import { useState } from "react";
-import useFetch from "../hooks/useFetch";
+import { useEffect, useState } from "react";
+import useLoadMore from "../hooks/useLoadMore";
 import SearchResultContainer from "../modules/SearchResultContainer";
 
 const Search = () => {
@@ -9,11 +9,20 @@ const Search = () => {
 
     const [searchQueryDetail, setsearchQueryDetail] = useState({
         cathegory: "all",
+        page: router.query.page || 1,
     });
 
-    let url = query && `/api/tmdb/search?q=${query}&page=${1}`;
+    let url = query && `/api/tmdb/search?q=${query}`;
 
-    let result = useFetch(url);
+    let result = useLoadMore(url, searchQueryDetail.page);
+
+    useEffect(() => {
+        setsearchQueryDetail({ ...searchQueryDetail, page: 1 });
+    }, [query]);
+
+    const handleLoadMore = () => {
+        setsearchQueryDetail((prev) => ({ ...prev, page: prev.page + 1 }));
+    };
 
     const handleSearchCathegoryChange = (cathegory) =>
         setsearchQueryDetail({ ...searchQueryDetail, cathegory });
@@ -24,12 +33,18 @@ const Search = () => {
     return (
         <main className="search">
             {query ? (
-                <SearchResultContainer
-                    searchQueryDetail={searchQueryDetail}
-                    query={query}
-                    handleSearchCathegoryChange={handleSearchCathegoryChange}
-                    {...result}
-                />
+                <>
+                    <SearchResultContainer
+                        searchQueryDetail={searchQueryDetail}
+                        query={query}
+                        handleSearchCathegoryChange={
+                            handleSearchCathegoryChange
+                        }
+                        handleLoadMore={handleLoadMore}
+                        {...result}
+                        currentPage={searchQueryDetail.page}
+                    />
+                </>
             ) : (
                 <header>
                     <h2>Search for Something</h2>

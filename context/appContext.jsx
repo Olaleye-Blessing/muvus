@@ -1,5 +1,5 @@
 import { useRouter } from "next/dist/client/router";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const AppContext = createContext();
 
@@ -22,6 +22,13 @@ export const AppWrapper = ({ children }) => {
 
         router.push(`/search?q=${searchQuery}`);
     };
+
+    // remove search query upon leaving search page
+    useEffect(() => {
+        if (router.pathname !== "/search") {
+            setSearchQuery("");
+        }
+    }, [router.pathname]);
 
     return (
         <AppContext.Provider

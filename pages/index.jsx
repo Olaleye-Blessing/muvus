@@ -2,6 +2,8 @@ import { getSession } from "next-auth/client";
 import { useRouter } from "next/dist/client/router";
 import { useEffect, useState } from "react";
 import Aside from "../components/Aside/Index";
+import LoadingIndicator from "../components/LoadingIndicator";
+import useLoadMore from "../hooks/useLoadMore";
 import HomeHeader from "../modules/HomeHeader";
 import HomeMainMedia from "../modules/HomeMainMedia";
 import HomePopularMedia from "../modules/HomePopularMedia";
@@ -15,12 +17,17 @@ const Home = ({ genreMedia, genreName }) => {
 
     const [cathegory, setCathegory] = useState(router.query.cathegory || "tv");
 
-    let popularPeopleDetail = useFetch(
-        `/api/tmdb/popular?cathegory=person&page=${1}`
+    const [popularPeoplePage, setPopularPeoplePage] = useState(1);
+    const [popularMediaPage, setPopularMediaPage] = useState(1);
+
+    let popularPeopleDetail = useLoadMore(
+        `/api/tmdb/popular?cathegory=person`,
+        popularPeoplePage
     );
 
-    let popularMediaDetail = useFetch(
-        `/api/tmdb/popular?cathegory=${cathegory}&page=${1}`
+    let popularMediaDetail = useLoadMore(
+        `/api/tmdb/popular?cathegory=${cathegory}`,
+        popularMediaPage
     );
 
     let trendingDetails = useFetch(`/api/tmdb/trending?cathegory=${cathegory}`);
@@ -33,6 +40,7 @@ const Home = ({ genreMedia, genreName }) => {
         if (!router.query.cathegory) return;
 
         setCathegory(router.query.cathegory);
+        setPopularMediaPage(1);
     }, [router.query.cathegory]);
 
     return (
@@ -54,6 +62,10 @@ const Home = ({ genreMedia, genreName }) => {
 
             <Aside>
                 <HomePopularMedia
+                    currentPage={popularMediaPage}
+                    handleLoadMore={() => {
+                        setPopularMediaPage((prev) => prev + 1);
+                    }}
                     popularMediaDetail={popularMediaDetail}
                     cathegory={cathegory}
                     genres={
@@ -61,7 +73,13 @@ const Home = ({ genreMedia, genreName }) => {
                         trendingDetails.data.data.genres
                     }
                 />
-                <HomePopularPeople popularPeopleDetail={popularPeopleDetail} />
+                <HomePopularPeople
+                    popularPeopleDetail={popularPeopleDetail}
+                    currentPage={popularPeoplePage}
+                    handleLoadMore={() => {
+                        setPopularPeoplePage((prev) => prev + 1);
+                    }}
+                />
             </Aside>
         </>
     );
