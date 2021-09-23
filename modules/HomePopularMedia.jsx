@@ -37,24 +37,12 @@ const HomePopularMedia = ({
                 results={results}
                 status={status}
                 handleLoadMore={handleLoadMore}
-                listContent={<PopularMedia media={results} />}
+                listContent={
+                    <PopularMedia media={results} media_type={cathegory} />
+                }
                 total_pages={total_pages}
                 currentPage={currentPage}
             />
-            {/* {results.length > 0 && <PopularMedia media={results} />}
-            {status === "fetched" &&
-                total_pages > 1 &&
-                currentPage < total_pages && (
-                    <div className="load__more-cont">
-                        <button
-                            className="btn__outline btn__outline-red load__more-btn"
-                            onClick={handleLoadMore}
-                        >
-                            Load More
-                        </button>
-                    </div>
-                )}
-            {status === "fetching" && <LoadingIndicator />} */}
         </AsideSectionLists>
     );
 };

@@ -30,8 +30,11 @@ const useLoadMore = (url, page) => {
         setResultDetail({ total_pages, results: newData });
     }, [data]);
 
-    // chnage status if current page > total pages
-    if (status === "fetched" && data.data.page > data.data.total_pages) {
+    if (status === "fetched" && data.data.total_results === 0) {
+        error = "No result found";
+        status = "error";
+    } else if (status === "fetched" && data.data.page > data.data.total_pages) {
+        // chnage status if current page > total pages
         error = "No more data";
         status = "error";
     }

@@ -28,28 +28,28 @@ const Search = () => {
         setsearchQueryDetail({ ...searchQueryDetail, cathegory });
 
     // this page just mounted
-    if (result.status === "idle") return null;
+    if (result.status === "idle") {
+        if (!query) {
+            return (
+                <header className="mt-5 pl-5">
+                    <h2>Search for Something</h2>
+                </header>
+            );
+        }
+
+        return null;
+    }
 
     return (
         <main className="search">
-            {query ? (
-                <>
-                    <SearchResultContainer
-                        searchQueryDetail={searchQueryDetail}
-                        query={query}
-                        handleSearchCathegoryChange={
-                            handleSearchCathegoryChange
-                        }
-                        handleLoadMore={handleLoadMore}
-                        {...result}
-                        currentPage={searchQueryDetail.page}
-                    />
-                </>
-            ) : (
-                <header>
-                    <h2>Search for Something</h2>
-                </header>
-            )}
+            <SearchResultContainer
+                searchQueryDetail={searchQueryDetail}
+                query={query}
+                handleSearchCathegoryChange={handleSearchCathegoryChange}
+                handleLoadMore={handleLoadMore}
+                {...result}
+                currentPage={searchQueryDetail.page}
+            />
         </main>
     );
 };

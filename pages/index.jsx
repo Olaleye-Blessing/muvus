@@ -2,7 +2,6 @@ import { getSession } from "next-auth/client";
 import { useRouter } from "next/dist/client/router";
 import { useEffect, useState } from "react";
 import Aside from "../components/Aside/Index";
-import LoadingIndicator from "../components/LoadingIndicator";
 import useLoadMore from "../hooks/useLoadMore";
 import HomeHeader from "../modules/HomeHeader";
 import HomeMainMedia from "../modules/HomeMainMedia";

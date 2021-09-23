@@ -13,6 +13,10 @@ const LoadMoreContainer = ({
         <>
             {results.length > 0 && listContent}
             {status === "error" && <div className="error">{error}</div>}
+            {status === "fetched" && results.length === 0 && (
+                <div className="error -mt-4 mb-4">No result found</div>
+            )}
+            {/* show load more if: data is fetched, there's more than one page of total data and current page is less than total pages */}
             {status === "fetched" &&
                 total_pages > 1 &&
                 currentPage < total_pages && (
