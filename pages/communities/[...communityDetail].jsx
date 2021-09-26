@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useSession, signin, signIn, getSession } from "next-auth/client";
 import { useRouter } from "next/dist/client/router";
 import { useEffect, useReducer, useRef, useState } from "react";
@@ -133,15 +134,25 @@ const Community = () => {
             </main>
         );
 
+    if (!session) {
+        // go to login page --- change this when custom login page is available
+        return router.replace("/");
+    }
+
     return (
-        <ChatGroup
-            {...groupState}
-            handleChangeUserMessage={handleChangeUserMessage}
-            handleSendMessage={handleSendMessage}
-            userMessage={userMessage}
-            user={session?.user.email}
-            scrollIntoViewDivRef={scrollIntoViewDivRef}
-        />
+        <>
+            <Head>
+                <title>({groupState.name}) community || MUVUS</title>
+            </Head>
+            <ChatGroup
+                {...groupState}
+                handleChangeUserMessage={handleChangeUserMessage}
+                handleSendMessage={handleSendMessage}
+                userMessage={userMessage}
+                user={session?.user.email}
+                scrollIntoViewDivRef={scrollIntoViewDivRef}
+            />
+        </>
     );
 };
 

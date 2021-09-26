@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { getSession } from "next-auth/client";
 import { useRouter } from "next/dist/client/router";
 import Image from "next/image";
@@ -60,69 +61,83 @@ const Detail = ({ data: { result, cathegory } }) => {
     };
 
     return (
-        <main className="mediaPage">
-            {src && (
-                <figure className="mediaPage__img">
-                    <Image
-                        loader={imageLoader}
-                        layout="fill"
-                        src={src}
-                        objectFit="cover"
-                    />
-                </figure>
-            )}
-            <section className="mediaPage__detail">
-                <header className="mediaPage__header">
-                    <h1 className="mediaPage__head">
-                        <span className="mediaPage__title">
-                            {title || name}
-                        </span>
-                        <span className="mediaPage__dot">.</span>
-                        <span className="mediaPage__date">
-                            {release_date || first_air_date || birthday}
-                        </span>
-                    </h1>
-                </header>
-                <p className="mediaPage__overview">{overview || biography}</p>
-
-                {cathegory !== "person" && (
-                    <>
-                        <MediaPageGenres
-                            genres={genres}
-                            handleGenreClicked={handleGenreClicked}
+        <>
+            <Head>
+                <title>
+                    {`${
+                        name || title
+                    } || ${cathegory.toUpperCase()} || MUVUS - All about movies, tv series, people and community
+                    groups.`}
+                </title>
+            </Head>
+            <main className="mediaPage">
+                {src && (
+                    <figure className="mediaPage__img">
+                        <Image
+                            loader={imageLoader}
+                            layout="fill"
+                            src={src}
+                            objectFit="cover"
                         />
-                        <section>
-                            {youTubeTrailerId && (
-                                <p>
-                                    <button
-                                        className="text-red-primary text-xl"
-                                        onClick={() => setShowTrailer(true)}
-                                    >
-                                        <AiFillYoutube />
-                                    </button>
-                                </p>
-                            )}
-
-                            {showTrailer && (
-                                <Modal
-                                    title={title || name}
-                                    handleModalClose={handleModalClose}
-                                >
-                                    <ReactPlayer
-                                        url={youTubeUrl}
-                                        onEnded={() => setShowTrailer(false)}
-                                        width="100%"
-                                        height="100%"
-                                        controls={true}
-                                        playing={true}
-                                    />
-                                </Modal>
-                            )}
-                        </section>
-                    </>
+                    </figure>
                 )}
-            </section>
-        </main>
+                <section className="mediaPage__detail">
+                    <header className="mediaPage__header">
+                        <h1 className="mediaPage__head">
+                            <span className="mediaPage__title">
+                                {title || name}
+                            </span>
+                            <span className="mediaPage__dot">.</span>
+                            <span className="mediaPage__date">
+                                {release_date || first_air_date || birthday}
+                            </span>
+                        </h1>
+                    </header>
+                    <p className="mediaPage__overview">
+                        {overview || biography}
+                    </p>
+
+                    {cathegory !== "person" && (
+                        <>
+                            <MediaPageGenres
+                                genres={genres}
+                                handleGenreClicked={handleGenreClicked}
+                            />
+                            <section>
+                                {youTubeTrailerId && (
+                                    <p>
+                                        <button
+                                            className="text-red-primary text-xl"
+                                            onClick={() => setShowTrailer(true)}
+                                        >
+                                            <AiFillYoutube />
+                                        </button>
+                                    </p>
+                                )}
+
+                                {showTrailer && (
+                                    <Modal
+                                        title={title || name}
+                                        handleModalClose={handleModalClose}
+                                    >
+                                        <ReactPlayer
+                                            url={youTubeUrl}
+                                            onEnded={() =>
+                                                setShowTrailer(false)
+                                            }
+                                            width="100%"
+                                            height="100%"
+                                            controls={true}
+                                            playing={true}
+                                        />
+                                    </Modal>
+                                )}
+                            </section>
+                        </>
+                    )}
+                </section>
+            </main>
+        </>
     );
 };
 
