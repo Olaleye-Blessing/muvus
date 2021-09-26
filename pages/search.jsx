@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/dist/client/router";
 import { useEffect, useState } from "react";
 import useLoadMore from "../hooks/useLoadMore";
@@ -31,9 +32,14 @@ const Search = () => {
     if (result.status === "idle") {
         if (!query) {
             return (
-                <header className="mt-5 pl-5">
-                    <h2>Search for Something</h2>
-                </header>
+                <>
+                    <Head>
+                        <title>No Search Query, no results</title>
+                    </Head>
+                    <header className="mt-5 pl-5">
+                        <h2>Search for Something</h2>
+                    </header>
+                </>
             );
         }
 
@@ -41,16 +47,21 @@ const Search = () => {
     }
 
     return (
-        <main className="search">
-            <SearchResultContainer
-                searchQueryDetail={searchQueryDetail}
-                query={query}
-                handleSearchCathegoryChange={handleSearchCathegoryChange}
-                handleLoadMore={handleLoadMore}
-                {...result}
-                currentPage={searchQueryDetail.page}
-            />
-        </main>
+        <>
+            <Head>
+                <title>{`Search: "${query}"`}</title>
+            </Head>
+            <main className="search">
+                <SearchResultContainer
+                    searchQueryDetail={searchQueryDetail}
+                    query={query}
+                    handleSearchCathegoryChange={handleSearchCathegoryChange}
+                    handleLoadMore={handleLoadMore}
+                    {...result}
+                    currentPage={searchQueryDetail.page}
+                />
+            </main>
+        </>
     );
 };
 

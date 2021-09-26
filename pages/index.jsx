@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { getSession } from "next-auth/client";
 import { useRouter } from "next/dist/client/router";
 import { useEffect, useState } from "react";
@@ -42,8 +43,32 @@ const Home = ({ genreMedia, genreName }) => {
         setPopularMediaPage(1);
     }, [router.query.cathegory]);
 
+    let headTitle = "",
+        headCathegory = router.query.cathegory,
+        headGenre = router.query.genre;
+
+    // determine head title
+    if (headCathegory) {
+        headTitle = headCathegory;
+        if (headGenre) {
+            headTitle += `(${genreName})`;
+        }
+        headTitle += " || ";
+    } else {
+        if (headGenre) {
+            headTitle = `${genreName} || `;
+        }
+    }
+    headTitle += `MUVUS - All about movies, tv series, people and community groups.`;
     return (
         <>
+            <Head>
+                {/* <title>
+                    {`${cathegory}(${genreName}) || MUVUS - All about movies, tv series, people and community
+                    groups.`}
+                </title> */}
+                <title>{headTitle}</title>
+            </Head>
             <main className="home__layout-main">
                 <HomeHeader
                     headerDetails={trendingDetails}

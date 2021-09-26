@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Arimo
+- Font Author: Copyright 2020 The Arimo Project Authors (https://github.com/googlefonts/arimo)
+- Font Source: http://fonts.gstatic.com/s/arimo/v17/P5sfzZCDf9_T_3cV7NCUECyoxNk37cxsBxDAVQI4aA.ttf
+- Font License: Apache License, version 2.0 (http://www.apache.org/licenses/LICENSE-2.0.html))
