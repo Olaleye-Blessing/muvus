@@ -1,79 +1,41 @@
 import { useRouter } from "next/dist/client/router";
 import { createContext, useContext, useEffect, useState } from "react";
-import { fetchData } from "../utils/fetchData";
 
 const AppContext = createContext();
 
 export const AppWrapper = ({ children }) => {
     let router = useRouter();
-    const [searchQueryDetail, setsearchQueryDetail] = useState({
-        query: "",
-        cathegory: "all",
-        showSearch: false,
-        loading: false,
-        error: null,
-        results: [],
-        page: 1,
-        total_pages: 1,
-    });
 
-    const handleSearchQueryChange = (query) =>
-        setsearchQueryDetail({ ...searchQueryDetail, query });
+    const [searchQuery, setSearchQuery] = useState("");
 
-    const handleSearchCathegoryChange = (cathegory) =>
-        setsearchQueryDetail({ ...searchQueryDetail, cathegory });
+    const handleSearchQueryChange = (query) => setSearchQuery(query);
 
     const handleRemoveSearchPage = () => {
-        setsearchQueryDetail({
-            ...searchQueryDetail,
-            showSearch: false,
-            query: "",
-        });
+        setSearchQuery("");
+        router.push("/");
     };
 
     const handleOnSearch = async (e) => {
         e.preventDefault();
 
-        if (router.pathname !== "/") {
-            router.push("/");
-        }
+        if (!searchQuery) return;
 
-        setsearchQueryDetail({
-            ...searchQueryDetail,
-            loading: true,
-            showSearch: true,
-        });
-        try {
-            let {
-                data: { total_pages, results },
-            } = await fetchData(
-                `/api/tmdb/search?q=${searchQueryDetail.query}&page=${searchQueryDetail.page}`
-            );
-            setsearchQueryDetail({
-                ...searchQueryDetail,
-                loading: false,
-                total_pages,
-                results,
-                showSearch: true,
-            });
-        } catch (error) {
-            setsearchQueryDetail({
-                ...searchQueryDetail,
-                loading: false,
-                error: error.message || "There was an error",
-                showSearch: true,
-            });
-            console.log(error);
-        }
+        router.push(`/search?q=${searchQuery}`);
     };
+
+    // remove search query upon leaving search page
+    useEffect(() => {
+        if (router.pathname !== "/search") {
+            setSearchQuery("");
+        }
+    }, [router.pathname]);
 
     return (
         <AppContext.Provider
             value={{
-                searchQueryDetail,
+                searchQuery,
                 handleSearchQueryChange,
                 handleOnSearch,
-                handleSearchCathegoryChange,
                 handleRemoveSearchPage,
             }}
         >

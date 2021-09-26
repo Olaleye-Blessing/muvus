@@ -1,0 +1,31 @@
+@layer utilities {
+    @variants responsive {
+        .layout__grid {
+            display: grid;
+            /*grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            */
+            grid-template-columns: 225px 3fr;
+            gap: 0;
+        }
+    }
+}
+.layout {
+    @apply sm:layout__grid;
+
+    nav {
+        /*
+        background-color: red;
+        */
+    }
+    main {
+        /*
+        background-color: yellow;
+        */
+    }
+    aside {
+        @apply xl:max-w-[250px];
+        /*
+        background-color: blue;
+        */
+    }
+}

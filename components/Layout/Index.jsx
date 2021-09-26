@@ -15,7 +15,8 @@ const Layout = ({ children }) => {
     }
 
     return (
-        <div className={`${pageClassNameLayout}`}>
+        // <div className={`${pageClassNameLayout}`}>
+        <div className={`layout`}>
             <Navbar />
             {children}
         </div>

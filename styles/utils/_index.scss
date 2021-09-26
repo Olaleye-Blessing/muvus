@@ -18,3 +18,13 @@
 .overlay {
     @apply absolute inset-0 bg-black bg-opacity-50;
 }
+
+.error {
+    @apply text-center text-red;
+}
+
+.load__more {
+    &-cont {
+        @apply w-max mx-auto;
+    }
+}

@@ -6,7 +6,11 @@ module.exports = {
     ],
     darkMode: false, // or 'media' or 'class'
     theme: {
-        extend: {},
+        extend: {
+            backgroundImage: (theme) => ({
+                "notFound-bg": "url('/assests/images/twinkle-bg.jpg')",
+            }),
+        },
         colors: {
             transparent: "transparent",
             current: "currentColor",
@@ -28,5 +32,5 @@ module.exports = {
     variants: {
         extend: {},
     },
-    plugins: [require("tailwind-scrollbar-hide")],
+    plugins: [],
 };

@@ -1,12 +1,11 @@
 .nav {
-    @apply px-2 py-4 flex items-center justify-between bg-black-primary shadow-lg sticky top-0 z-[990] sm:flex-col sm:items-start sm:justify-start sm:pl-6 sm:bottom-0 sm:border sm:border-white-primary sm:pr-0 sm:border-opacity-20 sm:nav__layout-area sm:max-w-[230px] sm:h-screen;
+    @apply px-2 py-4 flex items-center justify-between bg-black-primary shadow-lg sticky top-0 z-[990] sm:flex-col sm:items-start sm:justify-start sm:pl-6 sm:bottom-0 sm:border sm:border-white-primary sm:pr-0 sm:border-opacity-20 sm:nav__layout-area sm:max-w-[230px] self-start sm:min-h-screen sm:max-h-full;
     &__lists {
         @apply mb-3 sm:mb-8;
         &-cont {
-            @apply fixed top-[60.2px] left-0 bg-black-primary w-full overflow-hidden transition-all duration-200 max-w-xs sm:static sm:h-auto sm:border-0 sm:mt-7 sm:pl-0;
+            @apply fixed top-[65.5px] left-0 bg-black-primary w-full overflow-hidden transition-all duration-200 max-w-xs sm:static sm:h-auto sm:border-0 sm:mt-7 sm:pl-0;
         }
-        &.nav__auth {
-            @apply -mt-1 sm:-mt-5;
+        &-auth {
         }
     }
     &__links {
@@ -31,13 +30,10 @@
         &-cont {
         }
         &-form {
-            @apply relative max-w-[180px] mr-auto ml-3;
+            @apply relative max-w-[180px] mr-auto ml-3 sm:mt-auto sm:mb-8;
 
             &-sm {
-                @apply sm:pr-2 sm:-left-4 xl:hidden;
-            }
-            &-lg {
-                @apply hidden xl:block ml-0 mr-auto max-w-[12rem] mb-3;
+                @apply sm:pr-2 sm:-left-4;
             }
         }
         &-input {

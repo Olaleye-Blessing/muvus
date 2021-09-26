@@ -1,12 +1,32 @@
+import AsideSectionLists from "../components/Aside/AsideSectionLists";
 import LoadingIndicator from "../components/LoadingIndicator";
+import LoadMoreContainer from "../components/LoadMoreContainer";
+import { getUniqueObjectList } from "../utils/getUniqueObjectList";
 import PopularMedia from "./PopularMedia";
 
 const HomePopularPeople = ({
-    popularMediaDetail: { loading, people, error, page, total_pages },
+    popularPeopleDetail: { status, error, results, total_pages },
+    currentPage,
+    handleLoadMore,
 }) => {
-    if (loading) return <LoadingIndicator />;
+    if (status === "idle") return null;
+    results = [...getUniqueObjectList([...results], "id")];
 
-    return <PopularMedia cathegory="People" media={people} />;
+    return (
+        <AsideSectionLists header="Popular People">
+            <LoadMoreContainer
+                results={results}
+                status={status}
+                handleLoadMore={handleLoadMore}
+                listContent={
+                    <PopularMedia media={results} media_type="person" />
+                }
+                total_pages={total_pages}
+                currentPage={currentPage}
+                error={error}
+            />
+        </AsideSectionLists>
+    );
 };
 
 export default HomePopularPeople;

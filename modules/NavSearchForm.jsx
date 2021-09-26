@@ -2,7 +2,7 @@ import SearchInput from "../components/SearchInput";
 import { useAppContext } from "../context/appContext";
 
 const NavSearchForm = ({ navSize }) => {
-    let { handleOnSearch, handleSearchQueryChange, searchQueryDetail } =
+    let { handleOnSearch, handleSearchQueryChange, searchQuery } =
         useAppContext();
 
     return (
@@ -11,7 +11,7 @@ const NavSearchForm = ({ navSize }) => {
             onSubmit={handleOnSearch}
         >
             <SearchInput
-                {...searchQueryDetail}
+                query={searchQuery}
                 handleSearchQueryChange={handleSearchQueryChange}
             />
         </form>

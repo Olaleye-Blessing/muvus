@@ -1,2 +1,11 @@
 .btn {
+    &__outline {
+        @apply border border-solid border-current px-3 pt-1 pb-2 rounded hover:text-opacity-60 hover:border-opacity-70;
+        &-red {
+            @apply text-red-primary;
+        }
+    }
+    &-icon {
+        @apply text-lg;
+    }
 }
