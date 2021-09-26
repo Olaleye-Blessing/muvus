@@ -1,6 +1,7 @@
 const path = require("path");
 
 module.exports = {
+    target: "experimental-serverless-trace", // switching to netlify
     reactStrictMode: true,
     images: {
         domains: ["image.tmdb.org"],
