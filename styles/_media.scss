@@ -9,7 +9,23 @@
     }
 
     &-detail {
-        @apply flex flex-col justify-center pl-3 space-y-2;
+        @apply flex flex-col justify-center px-3;
+
+        & > h2 {
+            @apply mt-auto;
+        }
+
+        & > p {
+            &:last-of-type {
+                @apply mb-auto;
+            }
+        }
+
+        & > div {
+            &:last-child {
+                @apply max-w-max ml-auto mb-3;
+            }
+        }
     }
 }
 
@@ -46,9 +62,11 @@
     &__overview {
         @apply truncate text-white-primary text-opacity-50 mt-2;
     }
+    &__detail {
+        @apply px-3 flex flex-col justify-end;
+    }
     &__overview,
     &__title {
-        @apply px-3;
     }
 }
 
