@@ -1,8 +1,7 @@
 .home {
     &__layout {
-        @apply sm:home__layout-grid xl:home__layout-grid-lg;
         &-main {
-            @apply sm:pl-8 sm:overflow-x-hidden sm:home__main-grid;
+            grid-row-end: 2 !important;
         }
     }
     &__header {
@@ -36,10 +35,4 @@
             @apply py-1 text-white text-opacity-30 hover:text-red-primary;
         }
     }
-
-    /*
-    &__aside {
-        @apply px-2 sm:aside__layout-area sm:pl-8 lg:sticky top-0 right-0 xl:pt-4 xl:self-start xl:border-l xl:border-white-primary xl:border-opacity-20;
-    }
-    */
 }

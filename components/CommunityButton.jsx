@@ -9,7 +9,7 @@ const CommunityButton = ({ groupName, media_type, id, imgSrc }) => {
             <ButtonIcon
                 title={`Join ${groupName} community`}
                 icon={<RiGroupFill />}
-                extraClass="hover:text-red-primary"
+                extraClass="text-red-primary hover:opacity-50"
                 onClick={(e) => {
                     e.preventDefault();
                     router.push(

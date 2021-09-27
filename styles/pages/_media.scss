@@ -1,7 +1,7 @@
 .mediaPage {
     @apply relative z-[100] px-0;
     &__img {
-        @apply relative h-[calc(100vh-66px)] sm:h-screen;
+        @apply relative h-[calc(100vh-66px)] sm:h-full;
     }
     &__detail {
         @apply absolute inset-0 bg-black-primary bg-opacity-[0.75] flex flex-col justify-center px-4 pb-3 pt-6 sm:px-10;

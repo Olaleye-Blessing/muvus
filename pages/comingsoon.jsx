@@ -15,6 +15,13 @@ const comingsoon = () => {
 
     if (result.status === "idle") return null;
 
+    if (result.status === "fetched" && result.results.length > 0) {
+        result.results = result.results.map((media) => ({
+            ...media,
+            media_type: "movie",
+        }));
+    }
+
     return (
         <>
             <Head>

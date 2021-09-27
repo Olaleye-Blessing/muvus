@@ -43,7 +43,7 @@ const Index = () => {
 
     if (loadingCommunities) {
         return (
-            <main className="pt-10">
+            <main className="pt-10 min-h-screen">
                 <LoadingIndicator />
             </main>
         );
@@ -51,14 +51,14 @@ const Index = () => {
 
     if (error) {
         return (
-            <main className="pt-10">
+            <main className="pt-10 min-h-screen">
                 <p>there is an error</p>
             </main>
         );
     }
 
     return (
-        <main className="pt-2">
+        <main className="pt-2 min-h-screen">
             <header className="">
                 <h1>Available communities</h1>
             </header>
