@@ -2,8 +2,6 @@
     @variants responsive {
         .layout__grid {
             display: grid;
-            /*grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            */
             grid-template-columns: 225px 3fr;
             gap: 0;
         }
@@ -11,21 +9,17 @@
 }
 .layout {
     @apply sm:layout__grid;
+    @apply max-w-[2100px] mx-auto;
 
-    nav {
-        /*
-        background-color: red;
-        */
+    & > nav {
+        @apply col-start-1 col-end-2 row-start-1 row-end-3;
     }
-    main {
-        /*
-        background-color: yellow;
-        */
+    & > main {
+        @apply col-start-2 col-end-3 row-start-1 row-end-3 sm:overflow-x-hidden;
     }
-    aside {
+    & > aside {
         @apply xl:max-w-[250px];
-        /*
-        background-color: blue;
-        */
+        @apply col-start-2 row-start-2 xl:col-start-3 xl:row-start-1;
+        @apply sm:overflow-hidden;
     }
 }

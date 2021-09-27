@@ -1,5 +1,5 @@
 .aside {
-    @apply px-2 sm:aside__layout-area sm:pl-8 lg:sticky top-0 right-0 xl:pt-4 xl:self-start xl:border-l xl:border-white-primary xl:border-opacity-20 xl:min-h-screen xl:max-h-full xl:pl-4 xl:pb-3;
+    @apply px-2 sm:pl-8 lg:sticky top-0 right-0 xl:pt-4 xl:self-start xl:border-l xl:border-white-primary xl:border-opacity-20 xl:min-h-screen xl:max-h-full xl:pl-4 xl:pb-3;
     &__section {
         @apply xl:mb-8;
         &:last-child {

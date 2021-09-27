@@ -98,7 +98,7 @@ const Community = () => {
             // console.log(imgSrc);
             db.collection("communities")
                 .doc(groupId)
-                .set({ coverPhoto: imgSrc }, { merge: true })
+                .set({ coverPhoto: imgSrc, name }, { merge: true })
                 .then(() => {
                     db.collection("communities")
                         .doc(groupId)

@@ -19,35 +19,8 @@
 
 @layer utilities {
     @variants responsive {
-        .home__layout-grid {
-            display: grid;
-            grid-template-columns: 225px 3fr;
-
-            &-lg {
-                grid-template-columns: 250px 3fr 250px;
-            }
-        }
-        .home__layout-main {
-            @apply col-start-2 col-end-3 row-start-1 row-end-2;
-        }
-        .home__main-grid {
-            @apply text-opacity-100;
-        }
-
-        .nav__layout-area {
-            @apply col-start-1 col-end-2 row-start-1 row-end-3;
-        }
-        .aside__layout-area {
-            @apply text-white sm:overflow-hidden;
-
-            @apply col-start-2 row-start-2 xl:col-start-3 xl:row-start-1;
-        }
         .scrollbarVisible {
             scrollbar-width: auto;
-        }
-        .general__layout-grid {
-            display: grid;
-            grid-template-columns: 225px 3fr;
         }
         .scrollbar {
             &__hide {

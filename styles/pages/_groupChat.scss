@@ -1,3 +1,9 @@
+.layout {
+    .groupChat {
+        @apply sm:px-0 sm:row-end-3;
+        overflow: inherit;
+    }
+}
 .groupChat {
     @apply relative px-0 min-h-[calc(100vh-60px)] sm:min-h-screen flex sm:row-start-1 sm:row-end-3;
     &__nav {

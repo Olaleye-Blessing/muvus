@@ -1,9 +1,12 @@
 .nav {
-    @apply px-2 py-4 flex items-center justify-between bg-black-primary shadow-lg sticky top-0 z-[990] sm:flex-col sm:items-start sm:justify-start sm:pl-6 sm:bottom-0 sm:border sm:border-white-primary sm:pr-0 sm:border-opacity-20 sm:nav__layout-area sm:max-w-[230px] self-start sm:min-h-screen sm:max-h-full;
+    @apply px-2 py-4 flex items-center justify-between bg-black-primary shadow-lg sticky top-0 z-[990] sm:flex-col sm:items-start sm:justify-start sm:pl-6 sm:bottom-0 sm:border sm:border-white-primary sm:pr-0 sm:border-opacity-20 sm:max-w-[230px] self-start;
+    @apply sm:h-screen;
     &__lists {
         @apply mb-3 sm:mb-8;
         &-cont {
-            @apply fixed top-[65.5px] left-0 bg-black-primary w-full overflow-hidden transition-all duration-200 max-w-xs sm:static sm:h-auto sm:border-0 sm:mt-7 sm:pl-0;
+            @apply fixed top-[65.5px] left-0 bg-black-primary w-full overflow-hidden transition-all duration-200 max-w-xs flex flex-col sm:static sm:border-0 sm:mt-7 sm:pl-0;
+            @apply sm:h-[90%] sm:max-h-[604px] sm:overflow-y-auto;
+            scrollbar-width: thin;
         }
         &-auth {
         }
@@ -17,7 +20,7 @@
     }
     &__link {
         &-header {
-            @apply text-white text-opacity-70 mb-1;
+            @apply text-white text-opacity-70 mb-1 sm:sticky sm:top-0 sm:bg-black-primary;
         }
         &-icon {
             @apply text-current w-5 mr-2;
@@ -30,7 +33,7 @@
         &-cont {
         }
         &-form {
-            @apply relative max-w-[180px] mr-auto ml-3 sm:mt-auto sm:mb-8;
+            @apply relative max-w-[180px] mr-auto ml-3 sm:mt-2 sm:mb-auto;
 
             &-sm {
                 @apply sm:pr-2 sm:-left-4;
