@@ -6,13 +6,28 @@
 }
 .groupChat {
     @apply relative px-0 min-h-[calc(100vh-60px)] sm:min-h-screen flex sm:row-start-1 sm:row-end-3;
+    &-active {
+        @apply text-red-primary bg-red-primary bg-opacity-40 absolute bottom-0 -right-1 z-10 rounded-[50%] text-center flex items-center justify-center w-[18px] h-[18px] p-0 text-xs;
+    }
     &__nav {
         @apply w-0 overflow-hidden transition-all duration-300 sticky top-[65px] self-start shadow-inner min-h-screen bg-white-primary bg-opacity-5 sm:top-0 sm:pt-6;
         &.open {
-            @apply px-5 w-max;
+            @apply w-max pl-1 pr-3;
         }
         &-lists {
             @apply mt-16;
+        }
+        &-list {
+            @apply w-12 h-auto mb-8;
+        }
+        &-link {
+            @apply block relative;
+        }
+        &-figure {
+            @apply w-full;
+        }
+        &-img {
+            @apply rounded-full;
         }
         &-toggle {
             &-cont {
@@ -46,7 +61,7 @@
             /*
             @apply p-3 pl-7 bg-black-primary w-full flex-shrink-0 flex-grow sticky top-16 sm:top-0;
             */
-            @apply p-3 pl-7 bg-black-primary w-full sticky top-16 sm:top-0;
+            @apply p-3 pl-7 bg-black-primary w-full sticky top-16 sm:top-0 flex items-center;
             h1 {
                 @apply text-white text-opacity-30;
             }

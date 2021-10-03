@@ -18,13 +18,29 @@ let groupInitialState = {
 };
 const Community = () => {
     let [session, loading] = useSession();
+
+    let {
+        user: { email, name: userName },
+    } = session;
+
     let router = useRouter();
+
+    let {
+        query: {
+            communityDetail: [cathegory, mediaId],
+            imgSrc,
+            name,
+        },
+    } = router;
+
     const [userMessage, setUserMessage] = useState("");
 
     const [groupState, dispatch] = useReducer(
         groupChatReducer,
         groupInitialState
     );
+
+    const [joinedCommunities, setJoinedCommunities] = useState([]);
 
     const scrollIntoViewDivRef = useRef("");
 
@@ -49,9 +65,6 @@ const Community = () => {
     const handleSendMessage = () => {
         if (!userMessage) return;
 
-        let {
-            user: { name, email },
-        } = session;
         handleChangeUserMessage("");
 
         let { groupRef } = groupState;
@@ -59,7 +72,7 @@ const Community = () => {
             .collection("messages")
             .doc()
             .set({
-                from: name,
+                from: userName,
                 email,
                 createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
                 "message": userMessage,
@@ -73,23 +86,16 @@ const Community = () => {
             .catch((err) => {
                 console.warn(err);
             });
-        // createdAt
-        // uid
-        // message
     };
 
+    const getUserFirestore = () =>
+        db
+            .collection("users")
+            .where("email", "==", email)
+            .get()
+            .then((querySnapshot) => querySnapshot.docs[0]);
+
     useEffect(() => {
-        if (!router.query || Object.keys(router.query).length === 0 || !session)
-            return;
-
-        let {
-            query: {
-                communityDetail: [cathegory, mediaId],
-                imgSrc,
-                name,
-            },
-        } = router;
-
         dispatch({ type: "coverPic", payload: imgSrc });
 
         let groupId = `${cathegory}-${mediaId}`;
@@ -126,6 +132,14 @@ const Community = () => {
         });
     }, [router.query, session]);
 
+    useEffect(() => {
+        getUserFirestore().then((snap) => {
+            let { communities } = snap.data();
+
+            setJoinedCommunities(communities);
+        });
+    }, []);
+
     // show loading indication while checking if the group exists
     if (groupState.exists === -1)
         return (
@@ -134,10 +148,22 @@ const Community = () => {
             </main>
         );
 
-    if (!session) {
-        // go to login page --- change this when custom login page is available
-        return router.replace("/");
-    }
+    const handleLeaveGroup = () => {
+        getUserFirestore()
+            .then((snapShot) => {
+                snapShot.ref.set(
+                    {
+                        communities: firebase.firestore.FieldValue.arrayRemove({
+                            communityId: `${cathegory}-${mediaId}`,
+                            coverPic: imgSrc,
+                            groupName: name,
+                        }),
+                    },
+                    { merge: true }
+                );
+            })
+            .then(() => router.replace("/communities"));
+    };
 
     return (
         <>
@@ -151,6 +177,8 @@ const Community = () => {
                 userMessage={userMessage}
                 user={session?.user.email}
                 scrollIntoViewDivRef={scrollIntoViewDivRef}
+                joinedCommunities={joinedCommunities}
+                handleLeaveGroup={handleLeaveGroup}
             />
         </>
     );
