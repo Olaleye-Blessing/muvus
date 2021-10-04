@@ -2,16 +2,16 @@ import { useAppContext } from "../context/appContext";
 
 const SearchResultHeader = ({
     query,
-    cathegory,
-    handleSearchCathegoryChange,
+    category,
+    handleSearchCategoryChange,
 }) => {
     let { handleRemoveSearchPage } = useAppContext();
 
     let cathegories = [
-        { text: "All", cathegory: "all" },
-        { text: "Tv Shows", cathegory: "tv" },
-        { text: "Movies", cathegory: "movie" },
-        { text: "People", cathegory: "person" },
+        { text: "All", category: "all" },
+        { text: "Tv Shows", category: "tv" },
+        { text: "Movies", category: "movie" },
+        { text: "People", category: "person" },
     ];
 
     return (
@@ -31,13 +31,13 @@ const SearchResultHeader = ({
                 </div>
             </div>
             <ul className="cathegories">
-                {cathegories.map(({ text, cathegory: cath }) => (
+                {cathegories.map(({ text, category: cath }) => (
                     <li key={text} className={`cathegories__list`}>
                         <button
                             className={`cathegories__btn ${
-                                cathegory === cath ? "btn-active" : ""
+                                category === cath ? "btn-active" : ""
                             }`}
-                            onClick={() => handleSearchCathegoryChange(cath)}
+                            onClick={() => handleSearchCategoryChange(cath)}
                         >
                             {text}
                         </button>

@@ -77,19 +77,19 @@ const NavAuth = ({ session }) => {
             ],
         },
         {
-            header: "CATHEGORY",
+            header: "CATEGORY",
             sub: [
                 {
                     text: "tv show",
                     icon: <HiOutlineVideoCamera />,
                     activeIcon: <HiVideoCamera />,
-                    path: "/?cathegory=tv",
+                    path: "/?category=tv",
                 },
                 {
                     text: "movie",
                     icon: <BiMovie />,
                     activeIcon: <MdMovie />,
-                    path: "/?cathegory=movie",
+                    path: "/?category=movie",
                 },
             ],
         },

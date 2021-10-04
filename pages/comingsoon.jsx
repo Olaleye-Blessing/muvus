@@ -7,7 +7,7 @@ import LoadMoreContainer from "./../components/LoadMoreContainer";
 const comingsoon = () => {
     const [page, setPage] = useState(1);
 
-    let result = useLoadMore(`/api/tmdb/upcoming?cathegory=null`, page);
+    let result = useLoadMore(`/api/tmdb/upcoming?category=null`, page);
 
     const handleLoadMore = () => {
         setPage((prev) => prev + 1);

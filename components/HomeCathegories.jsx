@@ -1,24 +1,24 @@
 import { useRouter } from "next/dist/client/router";
 
-const HomeHeader = ({ handleChangeCathegory, activeCathegory }) => {
+const HomeHeader = ({ handleChangeCategory, activeCategory }) => {
     let router = useRouter();
     let lists = [
-        { text: "Tv Shows", cathegory: "tv" },
-        { text: "Movies", cathegory: "movie" },
-        // { text: "People", cathegory: "person" },
+        { text: "Tv Shows", category: "tv" },
+        { text: "Movies", category: "movie" },
+        // { text: "People", category: "person" },
     ];
     return (
         <ul className="home__header-lists">
-            {lists.map(({ text, cathegory }, index) => (
+            {lists.map(({ text, category }, index) => (
                 <li key={index} className="home__header-list">
                     <button
                         className={`home__header-btn ${
-                            activeCathegory === cathegory ? "btn-active" : ""
+                            activeCategory === category ? "btn-active" : ""
                         }`}
                         onClick={() => {
-                            // router.push(`/?cathegory=${cathegory || text}`);
-                            handleChangeCathegory(cathegory);
-                            router.push(`/?cathegory=${cathegory}`);
+                            // router.push(`/?category=${category || text}`);
+                            handleChangeCategory(category);
+                            router.push(`/?category=${category}`);
                         }}
                     >
                         {text}

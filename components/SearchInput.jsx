@@ -3,7 +3,7 @@ import { RiSearch2Line } from "react-icons/ri";
 const SearchInput = ({
     handleSearchQueryChange,
     query,
-    cathegory,
+    category,
     showSearch,
 }) => {
     return (

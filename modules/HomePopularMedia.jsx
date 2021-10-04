@@ -7,7 +7,7 @@ import PopularMedia from "./PopularMedia";
 
 const HomePopularMedia = ({
     popularMediaDetail: { status, error, results, total_pages },
-    cathegory,
+    category,
     genres,
     handleLoadMore,
     currentPage,
@@ -32,13 +32,13 @@ const HomePopularMedia = ({
     results = [...getUniqueObjectList([...results], "id")];
 
     return (
-        <AsideSectionLists header={`Popular ${cathegory}`}>
+        <AsideSectionLists header={`Popular ${category}`}>
             <LoadMoreContainer
                 results={results}
                 status={status}
                 handleLoadMore={handleLoadMore}
                 listContent={
-                    <PopularMedia media={results} media_type={cathegory} />
+                    <PopularMedia media={results} media_type={category} />
                 }
                 total_pages={total_pages}
                 currentPage={currentPage}

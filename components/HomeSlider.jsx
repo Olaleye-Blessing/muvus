@@ -1,7 +1,7 @@
 import Slider from "./Slider";
 import SliderMedia from "./SliderMedia";
 
-const HomeSlider = ({ trending, cathegory: media_type }) => {
+const HomeSlider = ({ trending, category: media_type }) => {
     let items = [...trending].map((trend) => (
         <SliderMedia key={trend.id} {...trend} />
     ));

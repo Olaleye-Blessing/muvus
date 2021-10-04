@@ -15,41 +15,41 @@ const TMDB_KEY = process.env.TMDB_KEY;
 const Home = ({ genreMedia, genreName }) => {
     let router = useRouter();
 
-    const [cathegory, setCathegory] = useState(router.query.cathegory || "tv");
+    const [category, setCategory] = useState(router.query.category || "tv");
 
     const [popularPeoplePage, setPopularPeoplePage] = useState(1);
     const [popularMediaPage, setPopularMediaPage] = useState(1);
 
     let popularPeopleDetail = useLoadMore(
-        `/api/tmdb/popular?cathegory=person`,
+        `/api/tmdb/popular?category=person`,
         popularPeoplePage
     );
 
     let popularMediaDetail = useLoadMore(
-        `/api/tmdb/popular?cathegory=${cathegory}`,
+        `/api/tmdb/popular?category=${category}`,
         popularMediaPage
     );
 
-    let trendingDetails = useFetch(`/api/tmdb/trending?cathegory=${cathegory}`);
+    let trendingDetails = useFetch(`/api/tmdb/trending?category=${category}`);
 
-    const handleChangeCathegory = (val) => setCathegory(val);
+    const handleChangeCategory = (val) => setCategory(val);
 
-    // this helps when the cathegory is chosen from navbar
+    // this helps when the category is chosen from navbar
     useEffect(() => {
-        // cathegory = undefined onMount
-        if (!router.query.cathegory) return;
+        // category = undefined onMount
+        if (!router.query.category) return;
 
-        setCathegory(router.query.cathegory);
+        setCategory(router.query.category);
         setPopularMediaPage(1);
-    }, [router.query.cathegory]);
+    }, [router.query.category]);
 
     let headTitle = "",
-        headCathegory = router.query.cathegory,
+        headCategory = router.query.category,
         headGenre = router.query.genre;
 
     // determine head title
-    if (headCathegory) {
-        headTitle = headCathegory;
+    if (headCategory) {
+        headTitle = headCategory;
         if (headGenre) {
             headTitle += `(${genreName})`;
         }
@@ -64,7 +64,7 @@ const Home = ({ genreMedia, genreName }) => {
         <>
             <Head>
                 {/* <title>
-                    {`${cathegory}(${genreName}) || MUVUS - All about movies, tv series, people and community
+                    {`${category}(${genreName}) || MUVUS - All about movies, tv series, people and community
                     groups.`}
                 </title> */}
                 <title>{headTitle}</title>
@@ -73,14 +73,14 @@ const Home = ({ genreMedia, genreName }) => {
                 <HomeHeader
                     headerDetails={trendingDetails}
                     genreName={genreName}
-                    cathegory={cathegory}
+                    category={category}
                     router={router}
-                    handleChangeCathegory={handleChangeCathegory}
+                    handleChangeCategory={handleChangeCategory}
                 />
                 <HomeMainMedia
                     genreName={genreName}
                     genreMedia={genreMedia}
-                    cathegory={cathegory}
+                    category={category}
                 />
             </main>
 
@@ -91,7 +91,7 @@ const Home = ({ genreMedia, genreName }) => {
                         setPopularMediaPage((prev) => prev + 1);
                     }}
                     popularMediaDetail={popularMediaDetail}
-                    cathegory={cathegory}
+                    category={category}
                     genres={
                         trendingDetails.status === "fetched" &&
                         trendingDetails.data.data.genres
@@ -112,22 +112,22 @@ const Home = ({ genreMedia, genreName }) => {
 export const getServerSideProps = async (context) => {
     const session = await getSession(context);
 
-    let { cathegory, genre } = context.query;
-    if (!cathegory) {
-        cathegory = "tv";
+    let { category, genre } = context.query;
+    if (!category) {
+        category = "tv";
     }
 
-    let cathegoryGenres = await fetch(
-        `https://api.themoviedb.org/3/genre/${cathegory}/list?api_key=${TMDB_KEY}&language=en-US`
+    let categoryGenres = await fetch(
+        `https://api.themoviedb.org/3/genre/${category}/list?api_key=${TMDB_KEY}&language=en-US`
     );
 
-    cathegoryGenres = await cathegoryGenres.json();
+    categoryGenres = await categoryGenres.json();
 
     if (!genre) {
-        genre = cathegoryGenres.genres[0].id;
+        genre = categoryGenres.genres[0].id;
     }
 
-    let url = new URL(`https://api.themoviedb.org/3/discover/${cathegory}`);
+    let url = new URL(`https://api.themoviedb.org/3/discover/${category}`);
     url.searchParams.set("api_key", TMDB_KEY);
     url.searchParams.set("language", "en-US");
     url.searchParams.set("sort_by", "popularity.desc");
@@ -138,7 +138,7 @@ export const getServerSideProps = async (context) => {
     url.searchParams.set("with_watch_monetization_types", "flatrate");
 
     let genreMedia = await fetch(url).then((res) => res.json());
-    let genreName = [...cathegoryGenres.genres].find(
+    let genreName = [...categoryGenres.genres].find(
         ({ name, id }) => +id === +genre
     ).name;
 
