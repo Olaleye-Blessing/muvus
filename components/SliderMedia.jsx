@@ -29,7 +29,7 @@ const SliderMedia = ({
                     src={backdrop_path || poster_path}
                 />
             </figure>
-            <div className="scroll__media-detail scroll__media-overlay">
+            <div className="scroll__media-detail overlay">
                 <h2>{name || title}</h2>
                 <p className="">{first_air_date}</p>
                 <p>{overview.slice(0, 145)}</p>

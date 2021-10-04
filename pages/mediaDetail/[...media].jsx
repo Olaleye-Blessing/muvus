@@ -81,7 +81,7 @@ const Detail = ({ data: { result, category } }) => {
                         />
                     </figure>
                 )}
-                <section className="mediaPage__detail">
+                <section className="mediaPage__detail overlay">
                     <header className="mediaPage__header">
                         <h1 className="mediaPage__head">
                             <span className="mediaPage__title">
