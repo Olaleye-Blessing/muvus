@@ -5,9 +5,9 @@ import HomeCathegories from "./../components/HomeCathegories";
 
 const HomeHeader = ({
     headerDetails: { status, error, data },
-    cathegory,
+    category,
     router,
-    handleChangeCathegory,
+    handleChangeCategory,
     genreName,
 }) => {
     if (status === "idle") return null;
@@ -16,8 +16,8 @@ const HomeHeader = ({
         <>
             <header className="home__header">
                 <HomeCathegories
-                    handleChangeCathegory={handleChangeCathegory}
-                    activeCathegory={cathegory}
+                    handleChangeCategory={handleChangeCategory}
+                    activeCategory={category}
                 />
                 {status === "fetching" && <LoadingIndicator />}
                 {status === "error" && <div>{error}</div>}
@@ -25,16 +25,13 @@ const HomeHeader = ({
                     <HomeGenres
                         genres={data.data.genres}
                         router={router}
-                        cathegory={cathegory}
+                        category={category}
                         genreName={genreName}
                     />
                 )}
             </header>
             {status === "fetched" && (
-                <HomeSlider
-                    trending={data.data.trending}
-                    cathegory={cathegory}
-                />
+                <HomeSlider trending={data.data.trending} category={category} />
             )}
         </>
     );

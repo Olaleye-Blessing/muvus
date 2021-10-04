@@ -12,7 +12,7 @@ import { imageLoader } from "../../utils/imageLoader";
 
 const TMDB_KEY = process.env.TMDB_KEY;
 
-const Detail = ({ data: { result, cathegory } }) => {
+const Detail = ({ data: { result, category } }) => {
     let router = useRouter();
     const [showTrailer, setShowTrailer] = useState(false);
 
@@ -36,12 +36,12 @@ const Detail = ({ data: { result, cathegory } }) => {
     let trailers = null;
     let youTubeTrailers = [];
 
-    if (cathegory !== "person") {
+    if (category !== "person") {
         trailers = videos.results;
 
         genres = [...genres].map((genre) => ({
             ...genre,
-            path: `/?cathegory=${cathegory}&genre=${genre.id}`,
+            path: `/?category=${category}&genre=${genre.id}`,
         }));
 
         youTubeTrailers = [...trailers].filter(
@@ -66,7 +66,7 @@ const Detail = ({ data: { result, cathegory } }) => {
                 <title>
                     {`${
                         name || title
-                    } || ${cathegory.toUpperCase()} || MUVUS - All about movies, tv series, people and community
+                    } || ${category.toUpperCase()} || MUVUS - All about movies, tv series, people and community
                     groups.`}
                 </title>
             </Head>
@@ -97,7 +97,7 @@ const Detail = ({ data: { result, cathegory } }) => {
                         {overview || biography}
                     </p>
 
-                    {cathegory !== "person" && (
+                    {category !== "person" && (
                         <>
                             <MediaPageGenres
                                 genres={genres}
@@ -145,22 +145,22 @@ export const getServerSideProps = async (context) => {
     const session = await getSession(context);
 
     let {
-        media: [cathegory, id],
+        media: [category, id],
     } = context.query;
 
-    let url = new URL(`https://api.themoviedb.org/3/${cathegory}/${id}`);
+    let url = new URL(`https://api.themoviedb.org/3/${category}/${id}`);
     url.searchParams.set("api_key", TMDB_KEY);
     url.searchParams.set("language", "en-US");
     url.searchParams.set(
         "append_to_response",
-        cathegory === "person" ? "credits" : "videos"
+        category === "person" ? "credits" : "videos"
     );
 
     try {
         let result = await fetchData(url);
         return {
             props: {
-                data: { result, cathegory },
+                data: { result, category },
                 session,
             },
         };

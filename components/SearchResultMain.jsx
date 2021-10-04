@@ -1,6 +1,6 @@
 import { getUniqueObjectList } from "../utils/getUniqueObjectList";
 import MediaLists from "./../modules/MediaLists";
-const SearchResultMain = ({ cathegory, results }) => {
+const SearchResultMain = ({ category, results }) => {
     // results = [...getUniqueObjectList([...results], "id")];
 
     // results = [...results].filter(
@@ -9,8 +9,8 @@ const SearchResultMain = ({ cathegory, results }) => {
     // );
 
     // let filteredResults =
-    //     cathegory !== "all"
-    //         ? [...results].filter((media) => media.media_type === cathegory)
+    //     category !== "all"
+    //         ? [...results].filter((media) => media.media_type === category)
     //         : [...results];
     return (
         <section>

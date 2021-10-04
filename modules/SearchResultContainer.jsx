@@ -7,7 +7,7 @@ import { getUniqueObjectList } from "../utils/getUniqueObjectList";
 const SearchResultContainer = ({
     searchQueryDetail,
     query,
-    handleSearchCathegoryChange,
+    handleSearchCategoryChange,
     status,
     error,
     results,
@@ -18,9 +18,9 @@ const SearchResultContainer = ({
     results = [...getUniqueObjectList([...results], "id")];
 
     let filteredResults =
-        searchQueryDetail.cathegory !== "all"
+        searchQueryDetail.category !== "all"
             ? [...results].filter(
-                  (media) => media.media_type === searchQueryDetail.cathegory
+                  (media) => media.media_type === searchQueryDetail.category
               )
             : [...results];
 
@@ -29,7 +29,7 @@ const SearchResultContainer = ({
             <SearchResultHeader
                 {...searchQueryDetail}
                 query={query}
-                handleSearchCathegoryChange={handleSearchCathegoryChange}
+                handleSearchCategoryChange={handleSearchCategoryChange}
             />
 
             <LoadMoreContainer

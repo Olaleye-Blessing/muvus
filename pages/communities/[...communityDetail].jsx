@@ -27,7 +27,7 @@ const Community = () => {
 
     let {
         query: {
-            communityDetail: [cathegory, mediaId],
+            communityDetail: [category, mediaId],
             imgSrc,
             name,
         },
@@ -98,7 +98,7 @@ const Community = () => {
     useEffect(() => {
         dispatch({ type: "coverPic", payload: imgSrc });
 
-        let groupId = `${cathegory}-${mediaId}`;
+        let groupId = `${category}-${mediaId}`;
 
         const createGroup = (groupId) => {
             // console.log(imgSrc);
@@ -154,7 +154,7 @@ const Community = () => {
                 snapShot.ref.set(
                     {
                         communities: firebase.firestore.FieldValue.arrayRemove({
-                            communityId: `${cathegory}-${mediaId}`,
+                            communityId: `${category}-${mediaId}`,
                             coverPic: imgSrc,
                             groupName: name,
                         }),

@@ -9,7 +9,7 @@ const Search = () => {
     let query = router.query.q;
 
     const [searchQueryDetail, setsearchQueryDetail] = useState({
-        cathegory: "all",
+        category: "all",
         page: router.query.page || 1,
     });
 
@@ -25,8 +25,8 @@ const Search = () => {
         setsearchQueryDetail((prev) => ({ ...prev, page: prev.page + 1 }));
     };
 
-    const handleSearchCathegoryChange = (cathegory) =>
-        setsearchQueryDetail({ ...searchQueryDetail, cathegory });
+    const handleSearchCategoryChange = (category) =>
+        setsearchQueryDetail({ ...searchQueryDetail, category });
 
     // this page just mounted
     if (result.status === "idle") {
@@ -55,7 +55,7 @@ const Search = () => {
                 <SearchResultContainer
                     searchQueryDetail={searchQueryDetail}
                     query={query}
-                    handleSearchCathegoryChange={handleSearchCathegoryChange}
+                    handleSearchCategoryChange={handleSearchCategoryChange}
                     handleLoadMore={handleLoadMore}
                     {...result}
                     currentPage={searchQueryDetail.page}

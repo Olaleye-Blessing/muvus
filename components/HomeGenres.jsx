@@ -1,4 +1,4 @@
-const HomeGenres = ({ genres, router, cathegory, genreName }) => {
+const HomeGenres = ({ genres, router, category, genreName }) => {
     return (
         <div className="home__genre-cont">
             <ul className="home__genre-lists">
@@ -10,7 +10,7 @@ const HomeGenres = ({ genres, router, cathegory, genreName }) => {
                             }`}
                             onClick={() => {
                                 router.push(
-                                    `/?cathegory=${cathegory}&genre=${id}`
+                                    `/?category=${category}&genre=${id}`
                                 );
                             }}
                         >

@@ -3,10 +3,10 @@ import { fetchData } from "../../../utils/fetchData";
 const TMDB_KEY = process.env.TMDB_KEY;
 
 const popularMedia = async (req, res) => {
-    let { cathegory, page } = req.query;
+    let { category, page } = req.query;
 
     let url = new URL(
-        `https://api.themoviedb.org/3/${cathegory}/popular?api_key=${TMDB_KEY}&language=en-US&page=${page}`
+        `https://api.themoviedb.org/3/${category}/popular?api_key=${TMDB_KEY}&language=en-US&page=${page}`
     );
     try {
         let popular = await fetchData(url);
