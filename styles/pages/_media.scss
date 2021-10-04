@@ -4,15 +4,18 @@
         @apply relative h-[calc(100vh-66px)] sm:h-full;
     }
     &__detail {
-        @apply absolute inset-0 bg-black-primary bg-opacity-[0.75] flex flex-col justify-center px-4 pb-3 pt-6 sm:px-10;
+        @apply flex flex-col justify-center px-4 pb-3 pt-6 sm:px-10;
+        &.overlay {
+            @apply bg-opacity-[0.85];
+        }
     }
     &__overview {
-        @apply max-h-[35vh] overflow-y-auto text-white text-opacity-70 mb-3 sm:max-h-[45vh] max-w-xl;
+        @apply max-h-[35vh] overflow-y-auto text-white text-opacity-80 mb-3 sm:max-h-[45vh] max-w-xl;
     }
     &__header {
     }
     &__head {
-        @apply max-w-xl;
+        @apply max-w-2xl mb-4;
     }
     &__title {
     }

@@ -4,9 +4,6 @@
     &-link {
         @apply block;
     }
-    &-overlay {
-        @apply absolute inset-0 bg-black-primary bg-opacity-50;
-    }
 
     &-detail {
         @apply flex flex-col justify-center px-3;
