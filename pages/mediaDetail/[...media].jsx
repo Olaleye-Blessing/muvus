@@ -9,8 +9,7 @@ import MediaPageGenres from "../../components/MediaPageGenres";
 import Modal from "../../components/Modal";
 import { fetchData } from "../../utils/fetchData";
 import { imageLoader } from "../../utils/imageLoader";
-
-const TMDB_KEY = process.env.TMDB_KEY;
+import { TMDB_KEY } from "../../constants";
 
 const Detail = ({ data: { result, category } }) => {
     let router = useRouter();

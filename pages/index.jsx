@@ -10,7 +10,7 @@ import HomePopularMedia from "../modules/HomePopularMedia";
 import HomePopularPeople from "../modules/HomePopularPeople";
 import useFetch from "./../hooks/useFetch";
 
-const TMDB_KEY = process.env.TMDB_KEY;
+import { TMDB_KEY } from "../constants";
 
 const Home = ({ genreMedia, genreName }) => {
     let router = useRouter();
