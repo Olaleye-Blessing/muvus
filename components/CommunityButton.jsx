@@ -2,8 +2,24 @@ import { useSession } from "next-auth/client";
 import { useRouter } from "next/dist/client/router";
 import { RiGroupFill } from "react-icons/ri";
 import firebase from "firebase/app";
+import toast from "react-hot-toast";
 import { db } from "../firebase";
 import ButtonIcon from "./ButtonIcon";
+
+let toastOption = {
+    duration: 2000,
+
+    className: "toast__error",
+
+    // Custom Icon
+    icon: "❌",
+
+    // Aria
+    ariaProps: {
+        role: "status",
+        "aria-live": "polite",
+    },
+};
 
 const CommunityButton = ({ groupName, media_type, id, imgSrc }) => {
     let router = useRouter();
@@ -17,8 +33,9 @@ const CommunityButton = ({ groupName, media_type, id, imgSrc }) => {
                 onClick={(e) => {
                     e.preventDefault();
                     if (!session)
-                        return alert(
-                            "you need to be logged in to join this community"
+                        return toast(
+                            "You need to log in to join/visit a community",
+                            toastOption
                         );
 
                     db.collection("users")

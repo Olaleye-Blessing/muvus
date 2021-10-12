@@ -28,3 +28,9 @@
         @apply w-max mx-auto;
     }
 }
+
+div.toast {
+    &__error {
+        @apply bg-red-primary text-white font-semibold;
+    }
+}
