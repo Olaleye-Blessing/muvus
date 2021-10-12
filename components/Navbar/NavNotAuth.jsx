@@ -1,44 +1,15 @@
-import { AiOutlineHome, AiFillHome } from "react-icons/ai";
-
-import { HiOutlineVideoCamera, HiVideoCamera } from "react-icons/hi";
-
-import { BiLogIn, BiMovie } from "react-icons/bi";
-
-import { MdMovie } from "react-icons/md";
+import { BiLogIn } from "react-icons/bi";
 
 import { signIn } from "next-auth/client";
 
 import NavList from "./NavList";
 
+import { homeLists } from "./HomeLists";
+import { cathegoryLists } from "./CathegoryList";
+
 let linksList = [
-    {
-        header: "MENU",
-        sub: [
-            {
-                text: "home",
-                icon: <AiOutlineHome />,
-                activeIcon: <AiFillHome />,
-                path: "/",
-            },
-        ],
-    },
-    {
-        header: "CATEGORY",
-        sub: [
-            {
-                text: "tv show",
-                icon: <HiOutlineVideoCamera />,
-                activeIcon: <HiVideoCamera />,
-                path: "/?category=tv",
-            },
-            {
-                text: "movie",
-                icon: <BiMovie />,
-                activeIcon: <MdMovie />,
-                path: "/?category=movie",
-            },
-        ],
-    },
+    ...homeLists,
+    ...cathegoryLists,
     {
         header: "General",
         sub: [
