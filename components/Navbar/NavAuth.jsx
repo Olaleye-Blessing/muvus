@@ -1,18 +1,9 @@
 import {
-    AiOutlineHome,
-    AiFillHome,
     AiOutlineClockCircle,
     AiFillClockCircle,
     AiOutlineSetting,
     AiFillSetting,
 } from "react-icons/ai";
-
-import {
-    RiCommunityLine,
-    RiCommunityFill,
-    RiScales2Line,
-    RiScales2Fill,
-} from "react-icons/ri";
 
 import {
     BsBookmarksFill,
@@ -21,17 +12,13 @@ import {
     BsPersonFill,
 } from "react-icons/bs";
 
-import { HiOutlineVideoCamera, HiVideoCamera } from "react-icons/hi";
+import { BiLogOut } from "react-icons/bi";
 
-import { BiMovie, BiLogIn, BiLogOut } from "react-icons/bi";
+import { signOut } from "next-auth/client";
 
-import { MdMovie } from "react-icons/md";
-
-import { signIn, signOut } from "next-auth/client";
-
-// import NavButton from "./NavButton";
-// import NavProfile from "./NavProfile";
 import NavList from "./NavList";
+import { homeLists } from "./HomeLists";
+import { cathegoryLists } from "./CathegoryList";
 
 const NavAuth = ({ session }) => {
     let {
@@ -39,28 +26,7 @@ const NavAuth = ({ session }) => {
     } = session;
 
     let navLists = [
-        {
-            header: "MENU",
-            sub: [
-                {
-                    text: "home",
-                    icon: <AiOutlineHome />,
-                    activeIcon: <AiFillHome />,
-                    path: "/",
-                },
-                {
-                    text: "communities",
-                    icon: <RiCommunityLine />,
-                    activeIcon: <RiCommunityFill />,
-                },
-                {
-                    text: "coming soon",
-                    icon: <RiScales2Line />,
-                    activeIcon: <RiScales2Fill />,
-                    path: "/comingsoon",
-                },
-            ],
-        },
+        ...homeLists,
         {
             header: "LIBRARY",
             sub: [
@@ -76,23 +42,7 @@ const NavAuth = ({ session }) => {
                 },
             ],
         },
-        {
-            header: "CATEGORY",
-            sub: [
-                {
-                    text: "tv show",
-                    icon: <HiOutlineVideoCamera />,
-                    activeIcon: <HiVideoCamera />,
-                    path: "/?category=tv",
-                },
-                {
-                    text: "movie",
-                    icon: <BiMovie />,
-                    activeIcon: <MdMovie />,
-                    path: "/?category=movie",
-                },
-            ],
-        },
+        ...cathegoryLists,
         {
             header: "General",
             sub: [
@@ -124,14 +74,6 @@ const NavAuth = ({ session }) => {
             })}
         </>
     );
-    // return session ? (
-    //     <>
-    //         <NavProfile {...session} />
-    //         <NavButton text={"Log Out"} icon={<BiLogOut />} onClick={signOut} />
-    //     </>
-    // ) : (
-    //     <NavButton text={"Log In"} icon={<BiLogIn />} onClick={signIn} />
-    // );
 };
 
 export default NavAuth;

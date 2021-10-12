@@ -1,5 +1,6 @@
 import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
+import { Toaster } from "react-hot-toast";
 import Navbar from "../Navbar/Index";
 
 const Layout = ({ children }) => {
@@ -63,6 +64,7 @@ const Layout = ({ children }) => {
             </Head>
             {/* // <div className={`${pageClassNameLayout}`}> */}
             <div className={`layout`}>
+                <Toaster />
                 <Navbar />
                 {children}
             </div>
