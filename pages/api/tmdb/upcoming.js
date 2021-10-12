@@ -1,6 +1,5 @@
 import { fetchData } from "../../../utils/fetchData";
-
-const TMDB_KEY = process.env.TMDB_KEY;
+import { TMDB_KEY } from "../../../constants";
 
 const popularMedia = async (req, res) => {
     let { page } = req.query;

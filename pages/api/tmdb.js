@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-const TMDB_KEY = process.env.TMDB_KEY;
+import { TMDB_KEY } from "../../constants";
 
 export default async function tmdb(req, res) {
     let { category, popularMediaPage } = req.query;
