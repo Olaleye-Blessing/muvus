@@ -12,6 +12,14 @@ const HomeHeader = ({
 }) => {
     if (status === "idle") return null;
 
+    let trending = [];
+
+    if (status === "fetched") {
+        trending = data.data.trending.filter(
+            (trend) => trend.backdrop_path || trend.poster_path
+        );
+    }
+
     return (
         <>
             <header className="home__header">
@@ -31,7 +39,7 @@ const HomeHeader = ({
                 )}
             </header>
             {status === "fetched" && (
-                <HomeSlider trending={data.data.trending} category={category} />
+                <HomeSlider trending={trending} category={category} />
             )}
         </>
     );

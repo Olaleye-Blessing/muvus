@@ -117,11 +117,13 @@ export const getServerSideProps = async (context) => {
         category = "tv";
     }
 
+    console.log({ TMDB_KEY });
     let categoryGenres = await fetch(
         `https://api.themoviedb.org/3/genre/${category}/list?api_key=${TMDB_KEY}&language=en-US`
     );
 
     categoryGenres = await categoryGenres.json();
+    console.log({ categoryGenres });
 
     if (!genre) {
         genre = categoryGenres.genres[0].id;
